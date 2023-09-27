@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokedex</title>
+  <link rel="icon" href="./img/icon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="template.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+</head>
+
+<body id="body" onload="init()">
+  <div class="navbar-header" id="nav-header">
+    <nav class="navbar bg-body-tertiary rounded-5 shadow rounded-top-0">
+      <div class="container-fluid justify-content-center">
+        <a id="brand" class="navbar-brand">Pokedex</a>
+        <div class="dropdown">
+          <!--  
+          <button id="typen_search" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Typen
+          </button>
+ 
+         <ul id="dropdown-menu-typs" class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        -->
+        </div>
+        <form class="d-flex" role="search">
+          <input id="search_input" onkeyup="searchPokemon()" class="form-control ms-2" type="text"
+            placeholder="Suche dein Pokemon" aria-label="Search">
+        </form>
+        <div class="dropdown ms-2">
+          <button id="country" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <img class="menu-flag justify-content-between align-items-center" src="./img/icon/de.png" alt="">Sprache
+          </button>
+          <ul id="flagg-list" class="dropdown-menu">
+            <li onclick="loadOtherLanguages('de')"><a
+                class="dropdown-item d-flex justify-content-between align-items-center">Deutsch<img
+                  src="./img/icon/de.png" alt=""></a></li>
+            <li onclick="loadOtherLanguages('en')"><a
+                class="dropdown-item d-flex justify-content-between align-items-center">Englisch<img
+                  src="./img/icon/en.png" alt=""></a></li>
+            <li onclick="loadOtherLanguages('fr')"><a
+                class="dropdown-item d-flex justify-content-between align-items-center">Französisch<img
+                  src="./img/icon/fr.png" alt=""></a></li>
+            <li onclick="loadOtherLanguages('es')"><a
+                class="dropdown-item d-flex justify-content-between align-items-center">Spanisch<img
+                  src="./img/icon/es.png" alt=""></a></li>
+            <li onclick="loadOtherLanguages('it')"><a
+                class="dropdown-item d-flex justify-content-between align-items-center">Italienisch<img
+                  src="./img/icon/it.png" alt=""></a></li>
+            <li onclick="loadOtherLanguages('ja')"><a
+                class="dropdown-item d-flex justify-content-between align-items-center">Japanisch<img
+                  src="./img/icon/ja.png" alt=""></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+
+  <div id="loader" class="loader">
+    <div class="loader-arrangement">
+      <div>
+        <h1 id="loading-screen-text" class="text-center">Pokédex wir geladen</h1>
+      </div>
+      <div>
+        <img class="align-items-center" src="./img/Pokeball.png" alt="Pokémon">
+      </div>
+
+      <div class="progress center" role="progressbar" aria-label="Animated striped example" aria-valuenow="75"
+        aria-valuemin="0" aria-valuemax="100">
+        <div id="progress-status" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cards-screen" class="dn">
+    <div id="content-small" class=" d-flex justify-content-center align-items-center flex-wrap ">
+    </div>
+
+    <div id="search-not-found" style="display: none;">
+      <div class="mt-5 d-flex justify-content-center align-items-center flex-wrap">
+      </div>
+    </div>
+  </div>
+
+  <div id="card-screen" class=" d-flex justify-content-center align-items-center">
+    <div id="card-screen-bg" class="card rounded-5 border-0  mt-4" style="width: 20rem;">
+      <div class="">
+        <div class="">
+          <div class="d-flex justify-content-around pt-2">
+            <svg style="height: 25px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path stroke="black" fill="transparent"
+                d="M12 21.35l-1.45-1.32C5.4 16.18 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 7.68-8.55 11.54L12 21.35z" />
+            </svg>
+            <button onclick="showCard()" type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between card-header-individually">
+          <svg style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
+            viewBox="0 0 24 24">
+            <g transform="scale(-1, 1) translate(-24, 0)">
+              <path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
+            </g>
+          </svg>
+          <h2 id="card-name">Bisasas</h2>
+          <svg style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
+            viewBox="0 0 24 24">
+            <path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
+          </svg>
+        </div>
+        <img class="card-bg-img" src="./img/Pokeball-PNG-Free-Download.png" class="card-img-top" alt="...">
+        <div class="header-card-title">
+          <div class="d-flex justify-content-start">
+            <div id="card-typs-small" class="typ-small-card">
+             
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p id="card-id" class="card-body pt-0 pb-0   id-stype-card text-sm-end">#001</p>
+          </div>
+        </div>
+        <img id="card-img" class="img-fluid rounded-start pokemon card-pokemon-img"
+          src=""
+          alt="...">
+
+        <div class="card-body rounded-top-4 p-0">
+          <div class=" rounded-5 bg p-2" style="font-size: 16px;">
+            <ul class="nav nav-tabs d-flex justify-content-around ms-2 me-2 mt-4 mb-2">
+              <li class="nav-item">
+                <a id="about-option" onclick="loadCardOption('about')" class="nav-link card-head-nav active nav-card-color" aria-current="page" href="#">Übersicht</a>
+              </li>
+              <li class="nav-item">
+                <a id="base-stats-option" onclick="loadCardOption('base-stats')" class="nav-link card-head-nav nav-card-color" href="#">Basisdaten</a>
+              </li>
+              <li class="nav-item">
+                <a id="evolution-option"  onclick="loadCardOption('evolution')" class="nav-link card-head-nav nav-card-color" href="#">Evolution</a>
+              </li>
+            </ul>
+            <div id="about" class="stats-box dn">
+              <div class="d-flex justify-content-between">
+                <div class="about-left">
+                  <p id="translate-species" class="mb-2">Species</p>
+                  <p id="translate-height" class="mb-2">Height</p>
+                  <p id="translate-weight" class="mb-2">Weight</p>
+                  <p id="translate-abilities" class="mb-2">Abilities</p>
+                  <h5 id="translate-breeding">Breeding</h5>
+                </div>
+                <div class="about-right">
+                  <p id="card-species" class="mb-2"><b>Seed</b></p>
+                  <p id="card-height" class="mb-2"><b>2 3,6 (7cm)</b></p>
+                  <p id="card-weight"class="mb-2"><b>8 tonnen</b></p>
+                  <p id="card-abilities" class="mb-2"><b>what???</b></p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="about-left">
+                  <p id="translate-gender" class="mb-2">Gender</p>
+                  <p id="translate-egg_groups" class="mb-2">Egg Groups</p>
+                  <p id="translate-egg_cycle" class="mb-2">Egg Cycle</p>
+                </div>
+                <div class="about-right">
+                  <div class="d-flex justify-content-start ">
+                    <p class="mb-2 me-2"><img style="height: 15px; margin-right: 5px;margin-bottom: 2px;"
+                        src="./img/male.png" alt="">
+                        <p class="mb-2 me-2" id="card-male">87.5%</p></p>
+                    <p class="mb-2 me-2"><img style="height: 15px; margin-right: 5px;" src="./img/female.png"
+                        alt=""><p class="mb-2 me-2" id="card-female">12.5%</p></p>
+                  </div>
+                  <p id="card-egg_groups" class="mb-2">Egg Groups</p>
+                  <p id="card-egg_cycle" class="mb-2">Egg Cycle</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="base-stats" class="stats-box dn">
+              <div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="basic-data-left ">
+                    <p id="translate-hp" class="mb-2">HP</p>
+                  </div>
+                  <div class="basic-data-center ">
+                    <p class="mb-2"><b>45</b></p>
+                  </div>
+                  <div class="basic-data-right ">
+                    <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
+                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar  bg-success" style="width: 25%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="basic-data-left ">
+                    <p id="translate-attack" class="mb-2">Attack</p>
+                  </div>
+                  <div class="basic-data-center ">
+                    <p class="mb-2"><b>60</b></p>
+                  </div>
+                  <div class="basic-data-right ">
+                    <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
+                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar bg-success" style="width: 25%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="basic-data-left ">
+                    <p id="translate-defense" class="mb-2">Defense</p>
+                  </div>
+                  <div class="basic-data-center ">
+                    <p class="mb-2"><b>48</b></p>
+                  </div>
+                  <div class="basic-data-right ">
+                    <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
+                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar bg-success" style="width: 25%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="basic-data-left ">
+                    <p id="translate-sp_atk" class="mb-2">Sp. Atk</p>
+                  </div>
+                  <div class="basic-data-center ">
+                    <p class="mb-2"><b>65</b></p>
+                  </div>
+                  <div class="basic-data-right ">
+                    <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
+                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar bg-success" style="width: 25%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="basic-data-left ">
+                    <p id="translate-sp_def" class="mb-2">Sp. Def</p>
+                  </div>
+                  <div class="basic-data-center ">
+                    <p class="mb-2"><b>65</b></p>
+                  </div>
+                  <div class="basic-data-right ">
+                    <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
+                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar bg-success" style="width: 25%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="basic-data-left ">
+                    <p id="translate-speed" class="mb-2">Speed</p>
+                  </div>
+                  <div class="basic-data-center ">
+                    <p class="mb-2"><b>45</b></p>
+                  </div>
+                  <div class="basic-data-right ">
+                    <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
+                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar bg-success" style="width: 25%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="basic-data-left ">
+                    <p id="translate-total" class="mb-2">Total</p>
+                  </div>
+                  <div class="basic-data-center ">
+                    <p class="mb-2"><b>317</b></p>
+                  </div>
+                  <div class="basic-data-right ">
+                    <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
+                      aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar bg-success" style="width: 25%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h5 id="translate-type_defenses">Type defenses</h5>
+              <p>The effectiveness of each type on Charmander.
+              </p>
+            </div>
+
+            <div id="evolution" class="stats-box evolution">
+              <h5 class="text-center mb-4">Evolution Chain</h5>
+              <div class="d-flex justify-content-between justify-content-center">
+                <div class="evolution-left d-flex justify-content-center flex-column">
+                  <img
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+                    alt="">
+                  <p class="text-center"><b>Bisasam</b></p>
+                </div>
+                <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
+                  <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 70 40">
+                    <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
+                    <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
+                  </svg>
+                  <p class="text-center"><b>Lvl 16</b></p>
+                </div>
+                <div class="evolution-right d-flex justify-content-center flex-column ">
+                  <img
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+                    alt="">
+                  <p class="text-center"><b>Bisasam</b></p>
+                </div>
+              </div>
+              <div span class="border-bottom mb-3"></div>
+              <div class="d-flex justify-content-between justify-content-center">
+                <div class="evolution-left d-flex justify-content-center flex-column">
+                  <img
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+                    alt="">
+                  <p class="text-center"><b>Bisasam</b></p>
+                </div>
+                <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
+                  <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 70 40">
+                    <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
+                    <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
+                  </svg>
+                  <p class="text-center"><b>Lvl 34</b></p>
+                </div>
+                <div class="evolution-right d-flex justify-content-center flex-column ">
+                  <img
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+                    alt="">
+                  <p class="text-center"><b>Bisasam</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id="scrollTopButton" title="Nach oben">
+    <span>&#8593;</span>
+  </button>
+</body>
+
+</html>
