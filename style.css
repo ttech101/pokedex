@@ -311,7 +311,16 @@ body {
 
 .basic-data-left {
     width: 25%;
+
 }
+
+.basic-data-left p {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 85%;
+    text-overflow: ellipsis;
+}
+
 
 .basic-data-center {
     width: 20%;
@@ -341,9 +350,12 @@ body {
     padding: 10px;
     border-radius: 40px;
 }
-.nav-card-color{
+
+.nav-card-color {
     color: rgba(0, 0, 0, 0.45);
 }
-.nav-card-color:hover{
+
+.nav-card-color:hover {
     color: rgba(0, 0, 0, 1);
 }
+

@@ -6,12 +6,12 @@ let img = "";
 let id = "";
 let designation = [];
 let bg_color = "";
-
 let pokemon_main = [];
 let typs = [];
 let pokemon_species = [];
 let pokemon_typ = [];
 let pokemon_typs = [];
+let not_found = "No translation found";
 
 let language_other_data = [
     {
@@ -30,7 +30,7 @@ let language_other_data = [
         "about": "Übersicht",
         "base_stats": "Basisdaten",
         "evolution": "Evolution",
-        "species": "Spezies",
+        "species": "Species",
         "height": "Höhe",
         "weight": "Gewicht",
         "abilities": "Fähigkeiten",
@@ -45,10 +45,13 @@ let language_other_data = [
         "sp_def": "Sp. Ver.",
         "speed": "Geschwindigkeit",
         "total": "Gesamt",
-        "type_defenses": "Art der Verteidigung",
+        "fact": "Fakten",
         "evolution_chain": "Evolutionskette",
         "level": "Lvl",
-        "search": "Suche dein Pokémon"
+        "not_found" : "nicht gefunden",
+        "search": "Suche dein Pokémon",
+        "lvl": "Stufe",
+        "evo_chain" :"Evolutionskette"
     },
     {
         "language": "en",
@@ -81,8 +84,11 @@ let language_other_data = [
         "sp_def": "Sp. Def",
         "speed": "Speed",
         "total": "Total",
-        "type_defenses": "Type defenses",
-        "search": "Search your Pokémon"
+        "fact": "Factual information",
+        "not_found" : "Not found",
+        "search": "Search your Pokémon",
+        "lvl": "Level",
+        "evo_chain" :"Evolution chain"
     },
     {
         "language": "fr",
@@ -115,8 +121,10 @@ let language_other_data = [
         "sp_def": "Déf. Spé.",
         "speed": "Vitesse",
         "total": "Total",
-        "type_defenses": "Défenses de type",
-        "search": "Cherche ton Pokémon"
+        "fact": "Faits",
+        "search": "Cherche ton Pokémon",
+        "lvl": "niveau",
+        "evo_chain" :"Chaîne d'évolution"
     },
     {
         "language": "it",
@@ -149,8 +157,10 @@ let language_other_data = [
         "sp_def": "Difesa Speciale",
         "speed": "Velocità",
         "total": "Totale",
-        "type_defenses": "Difese di Tipo",
-        "search": "Cerca il tuo Pokémon"
+        "fact": "I fatti",
+        "search": "Cerca il tuo Pokémon",
+        "lvl": "livello",
+        "evo_chain" :"Catena di evoluzione"
     },
     {
         "language": "es",
@@ -183,8 +193,10 @@ let language_other_data = [
         "sp_def": "Defensa Especial",
         "speed": "Velocidad",
         "total": "Total",
-        "type_defenses": "Defensas Tipo",
-        "search": "Busca tu Pokémon"
+        "fact": "Hechos",
+        "search": "Busca tu Pokémon",
+        "lvl": "nivel",
+        "evo_chain" :"Cadena de evolución"
     },
     {
         "language": "ja",
@@ -217,9 +229,10 @@ let language_other_data = [
         "sp_def": "特防",
         "speed": "速さ",
         "total": "合計",
-        "type_defenses": "タイプに対する防御",
-        "search": "あなたのポケモンを探してください"
+        "fact": "事実",
+        "search": "あなたのポケモンを探してください",
+        "lvl": "レベル",
+        "evo_chain" :"進化の連鎖"
     }
-
 ];
 
