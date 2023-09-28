@@ -237,10 +237,11 @@ function searchPokemon() {
         const element = pokemon_main[i];
         for (let j = 0; j < pokemon_main[i].designation.length; j++) {
             const element = pokemon_main[i].designation[j];
-            let card_number = i + 1;
+            let card_number = i ;
             if (element.text.toLowerCase().includes(search)) {
                 document.getElementById(`card-number-${card_number}`).classList.remove('dn');
                 found++;
+                console.log(found);
                 break;
             } else {
                 document.getElementById(`card-number-${card_number}`).classList.add('dn');
@@ -267,11 +268,13 @@ window.addEventListener('scroll', function () {
 });
 
 function serachNotFound(found) {
+    console.log(found);
     if (found == 0) {
         document.getElementById('search-not-found').style.display = "";
     } else {
         document.getElementById('search-not-found').style.display = "none";
     }
+
 };
 
 function loadCardOption(choice) {
