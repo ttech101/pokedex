@@ -9,9 +9,7 @@ body {
     top: 0;
     z-index: 5;
 }
-h2{
 
-}
 
 .bg {
     background-color: white;
@@ -269,9 +267,9 @@ h2{
 
 .card-pokemon-img {
     position: absolute;
-    left: 50px;
+    left: 35%;
     right: 0;
-    width: 100%;
+   
     top: 90px;
     height: 160px;
 }
@@ -375,6 +373,10 @@ h2{
     border-radius: 50px;
 }
 
+.card-hover-like:hover {
+    cursor: pointer;
+}
+
 .navbar-footer {
     position: fixed;
     left: 0;
@@ -383,8 +385,10 @@ h2{
     z-index: 5;
 }
 
-.card-screen-small{
+.card-screen-small {
+    margin-top: 50px;
     width: 20rem;
+    
 }
 
 @media (min-width: 500px) {
@@ -402,10 +406,79 @@ h2{
 
     .card-screen-small {
         width: 100%;
-}
+        margin-top: 10px;
+    }
 
+    .card-pokemon-img {
+        left: 35%;
+        width: auto;
+        right: 0;
+        top: 90px;
+        height: 160px;
+    }
 
     .search-top {
         display: none;
     }
+
+    .card-bg-img {
+        position: relative;
+        width: 100%;
+        object-fit: contain;
+        top: 0px;
+        z-index: 0;
+        height: 170px;
+    }
 }
+
+
+
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+    
+    @keyframes rotate {
+        100% {
+            transform: rotate(1turn);
+        }
+    }
+    
+    .conic {
+        position: relative;
+        z-index: 0;
+        width: 400px;
+        height: 300px;
+        margin: 5px;
+        border-radius: 10px;
+        overflow: hidden;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: -2;
+            left: -50%;
+            top: -50%;
+            width: 200%;
+            height: 200%;
+           
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            background-image: conic-gradient(transparent, rgb(199, 221, 0), transparent 30%);
+            animation: rotate 4s linear infinite;
+        }
+        
+        &::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            left: -6px;
+            top: -6px;
+            width: calc(100% - 12px);
+            height: calc(100% - 12px);
+            background: #b14449;
+            border-radius: 5px;
+        }
+    }
+    
+    

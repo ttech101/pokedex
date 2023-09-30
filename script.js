@@ -1,9 +1,7 @@
 
 function init() {
     loadBlock();
-
     scrollToTop();
-    
 }
 
 async function loadBlock() {
@@ -181,7 +179,8 @@ function pushToLocalCard() {
         habitat,
         gender_rate,
         flavor_text_entries,
-        evolution_chain
+        evolution_chain,
+        like: ""
     });
 }
 
@@ -233,10 +232,7 @@ function loadingScreenRemove() {
 function searchPokemon() {
     let search_top = document.getElementById('search_input').value;
     let search_bottom = document.getElementById('search_input_bottom').value;
-
     let search = search_top + search_bottom;
-    console.log(search);
-
     search = search.toLowerCase();
     let found = 0;
     for (let i = 0; i < pokemon_main.length; i++) {
@@ -247,7 +243,6 @@ function searchPokemon() {
             if (element.text.toLowerCase().includes(search)) {
                 document.getElementById(`card-number-${card_number}`).classList.remove('dn');
                 found++;
-                //console.log(found);
                 break;
             } else {
                 document.getElementById(`card-number-${card_number}`).classList.add('dn');
@@ -274,7 +269,6 @@ window.addEventListener('scroll', function () {
 });
 
 function serachNotFound(found) {
-    console.log('gefunden:', found);
     if (found == 0) {
         document.getElementById('search-not-found').style.display = "";
     } else {
@@ -286,15 +280,15 @@ function serachNotFound(found) {
 function loadCardOption(choice) {
     removeClasslistCard();
     if (choice == 'about') {
-        document.getElementById('about-option').classList.add('active')
+        document.getElementById('about-option').classList.add('active');
         document.getElementById('about').classList.remove('dn');
     }
     if (choice == 'base-stats') {
-        document.getElementById('base-stats-option').classList.add('active')
+        document.getElementById('base-stats-option').classList.add('active');
         document.getElementById('base-stats').classList.remove('dn');
     }
     if (choice == 'evolution') {
-        document.getElementById('evolution-option').classList.add('active')
+        document.getElementById('evolution-option').classList.add('active');
         document.getElementById('evolution').classList.remove('dn');
     }
 }
@@ -312,26 +306,24 @@ function showCard(option) {
         document.getElementById('cards-screen').classList.add('dn');
         document.getElementById('card-screen').classList.remove('dn');
     } else {
+        enableSearchBottom();
         document.getElementById('card-screen').classList.add('dn');
         document.getElementById('cards-screen').classList.remove('dn');
     }
 }
 
 function loadCard(i) {
-    console.log('der absolute start:', i)
+    disableSearchBottom();
     showCard('ture');
     loadCardOption('about')
     id = i,
-        // i = i - 1;
         loadCardElements(i);
     cardTypsSmall(i, language)
-
     console.log('karten index=', i)
     console.log('karten Nummer=', i)
-
     document.getElementById('card-id').innerHTML = pokemonId(i + 1);
     loadStats(i);
-
+    loadLikePokemon();
 }
 
 function cardTypsSmall(id) {
@@ -346,9 +338,8 @@ function cardTypsSmall(id) {
 
 function loadCardElements(i) {
     loadBottomSmallCard(i);
-    console.warn(pokemon_main[i]['img'])
     document.getElementById('card-img').src = pokemon_main[i]['img'];
-    document.getElementById('card-screen-bg').classList = `card-screen-small card rounded-5 border-0 mt-4 ${pokemon_main[i]['bg_color']}`;
+    document.getElementById('card-screen-bg').classList = `card-screen-small card rounded-5 border-0  ${pokemon_main[i]['bg_color']}`;
 
 }
 
@@ -389,14 +380,11 @@ function translator4Instance(id, paragraph, translate_in, tabel) {
 };
 
 function loadStats(i) {
-    console.log('weiter oben', i);
-
     if (typeof i == 'string') {
-        console.warn('drinnen;', i);
         i = 1;
         loadStats(i);
     } else {
-        
+
         translateLayout(i);
         loadStatsAbout(i);
         loadStatsbasestats(i);
@@ -419,7 +407,6 @@ function translateLayout() {
 }
 
 function changeEvolution(element) {
-    console.log(element);
     document.getElementById('header-bas-stats').innerHTML = element.evo_chain;
     document.getElementById('lvl-status1').innerHTML = element.lvl;
     if (document.getElementById('lvl-status2') != null) {
@@ -568,7 +555,6 @@ function changeBaseStatsLoad() {
 }
 
 function loadEvolutionStats(i) {
-    console.log('dsasdsdasad:', i + 6)
     if (pokemon_main[i].evolution_chain.length == 3) {
         createEvolutionTemplate3(i);
     } else if (pokemon_main[i].evolution_chain.length == 2) {
@@ -587,16 +573,55 @@ function loadBottomSmallCard(i) {
     } else {
         document.getElementById('left-card').innerHTML = createSmallBottomLeft();
         document.getElementById("left-card").onclick = function () { loadCard(remove1) };
+
         document.getElementById("right-card").onclick = function () { loadCard(addi) };
     }
 }
 
 function notFoundTranslate() {
-    console.log('hier');
+
     for (let i = 0; i < language_other_data.length; i++) {
         const element = language_other_data[i];
         if (element.language == language) {
             return element.not_found;
         }
     }
+}
+
+function disableSearchBottom() {
+    console.log('ausblemnden')
+    document.getElementById('nav-footer').classList.add('dn');
+}
+
+function enableSearchBottom() {
+    console.log('einblenden')
+    document.getElementById('nav-footer').classList.remove('dn');
+}
+
+function likePokemon() {
+    console.log(pokemon_main[id])
+    if (pokemon_main[id].like == "") {
+        pokemon_main[id].like = 1;
+        document.getElementById('heat').innerHTML = `<path  stroke="red" fill="red"
+        d="M12 21.35l-1.45-1.32C5.4 16.18 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 7.68-8.55 11.54L12 21.35z" />`;
+    } else {
+        pokemon_main[id].like = "";
+        document.getElementById('heat').innerHTML = `<path  stroke="black" fill="transparent"
+        d="M12 21.35l-1.45-1.32C5.4 16.18 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 7.68-8.55 11.54L12 21.35z" />`;
+    } 
+
+}
+
+
+function loadLikePokemon() {
+    console.log(pokemon_main[id])
+    if (pokemon_main[id].like == 1) {
+        document.getElementById('heat').innerHTML = `<path  stroke="red" fill="red"
+        d="M12 21.35l-1.45-1.32C5.4 16.18 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 7.68-8.55 11.54L12 21.35z" />`;
+    } else {
+        pokemon_main[id].like = "";
+        document.getElementById('heat').innerHTML = `<path  stroke="black" fill="transparent"
+        d="M12 21.35l-1.45-1.32C5.4 16.18 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 7.68-8.55 11.54L12 21.35z" />`;
+    } 
+
 }
