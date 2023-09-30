@@ -1,12 +1,15 @@
 body {
     background-color: #F2F2F2;
     margin: 0;
+    height: 100vh;
 }
 
 .navbar-header {
     position: sticky;
     top: 0;
     z-index: 5;
+}
+h2{
 
 }
 
@@ -231,15 +234,16 @@ body {
 #scrollTopButton {
     display: none;
     position: fixed;
-    bottom: 20px;
+    bottom: 10px;
     right: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: #007BFF;
+    width: 35px;
+    height: 35px;
+    background-color: rgba(0, 0, 0, 0.4);
     color: #fff;
     border: none;
     border-radius: 50%;
     cursor: pointer;
+    z-index: 10;
 }
 
 #scrollTopButton span {
@@ -251,7 +255,7 @@ body {
 }
 
 #scrollTopButton:hover {
-    background-color: #0056b3;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .card-bg-img {
@@ -321,6 +325,13 @@ body {
     text-overflow: ellipsis;
 }
 
+.about-data-left {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 90%;
+    text-overflow: ellipsis;
+}
+
 
 .basic-data-center {
     width: 20%;
@@ -346,9 +357,7 @@ body {
 
 .evolution img {
     height: 80px;
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 10px;
-    border-radius: 40px;
+
 }
 
 .nav-card-color {
@@ -359,3 +368,44 @@ body {
     color: rgba(0, 0, 0, 1);
 }
 
+.card-hover:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 2px;
+    border-radius: 50px;
+}
+
+.navbar-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+}
+
+.card-screen-small{
+    width: 20rem;
+}
+
+@media (min-width: 500px) {
+    .serch-footer {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .card-screen-small {
+        width: 100%;
+}
+
+
+    .search-top {
+        display: none;
+    }
+}

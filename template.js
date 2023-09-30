@@ -195,7 +195,7 @@ function createEvolutionTemplate3(id) {
         var index = element.index;
         for (let m = 0; m < pokemon_main[index].designation.length; m++) {
             const element = pokemon_main[index].designation[m];
-     
+
             if (element.language == language) {
                 let name = element.text;
                 if (k == 0) {
@@ -219,16 +219,21 @@ function createEvolutionTemplate3(id) {
                       alt="">
                     <p class="text-center"><b>${name_stufe1}</b></p>
                   </div>
+
+
                   <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
+                  <p class=" m-0"><b>${pokemon_main[id].evolution_chain[1].level_up}</b></p>
                     <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
                       viewBox="0 0 70 40">
                       <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     </svg>
-                    <p class="text-center"><b id="lvl-status1">Lvl</b>${pokemon_main[id].evolution_chain[1].level_up}</p>
+                    <p class="text-center"><b id="lvl-status1">Lvl</b></p>
                   </div>
+
+
                   <div class="evolution-right d-flex justify-content-center flex-column ">
-                    <img onklick="loadCard(${pokemon_main[id].card_number-1})"
+                    <img onklick="loadCard(${pokemon_main[id].card_number - 1})"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
                     <p class="text-center"><b>${name_stufe2}</b></p>
@@ -243,12 +248,13 @@ function createEvolutionTemplate3(id) {
                     <p class="text-center"><b>${name_stufe2}</b></p>
                   </div>
                   <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
-                    <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
+                  <p class=" m-0"><b>${pokemon_main[id].evolution_chain[2].level_up}</b></p>  
+                  <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
                       viewBox="0 0 70 40">
                       <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     </svg>
-                    <p class="text-center"><b id="lvl-status2">Lvl </b>${pokemon_main[id].evolution_chain[2].level_up}</p>
+                    <p class="text-center"><b id="lvl-status2">Lvl </b></p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column ">
                     <img
@@ -267,7 +273,7 @@ function createEvolutionTemplate2(id) {
         var index = element.index;
         for (let m = 0; m < pokemon_main[index].designation.length; m++) {
             const element = pokemon_main[index].designation[m];
-       
+
             if (element.language == language) {
                 let name = element.text;
                 if (k == 0) {
@@ -289,12 +295,13 @@ function createEvolutionTemplate2(id) {
                     <p class="text-center"><b>${name_stufe1}</b></p>
                   </div>
                   <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
-                    <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
+                  <p class=" m-0"><b>${pokemon_main[id].evolution_chain[1].level_up}</b></p>
+                  <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
                       viewBox="0 0 70 40">
                       <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     </svg>
-                    <p class="text-center"><b id="lvl-status1">Lvl </b>${pokemon_main[id].evolution_chain[1].level_up}</p>
+                    <p class="text-center"><b id="lvl-status1">Lvl </b></p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column ">
                     <img
@@ -304,4 +311,14 @@ function createEvolutionTemplate2(id) {
                   </div>
                 </div>
                 `;
+}
+
+function createSmallBottomLeft() {
+    let a = `  <svg class="card-hover" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
+    viewBox="0 0 24 24">
+    <g transform="scale(-1, 1) translate(-24, 0)">
+      <path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
+    </g>
+  </svg>`;
+    return a;
 }

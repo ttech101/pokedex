@@ -1,6 +1,6 @@
 const main_url = 'https://pokeapi.co/api/v2/pokemon/';
 let card_number = 0;
-let loading_counter = 20 - 1;
+let loading_counter = 10 - 1;
 let language = 'de';
 let img = "";
 let id = "";
@@ -11,7 +11,6 @@ let typs = [];
 let pokemon_species = [];
 let pokemon_typ = [];
 let pokemon_typs = [];
-let not_found = "No translation found";
 
 let language_other_data = [
     {
@@ -122,6 +121,7 @@ let language_other_data = [
         "speed": "Vitesse",
         "total": "Total",
         "fact": "Faits",
+        "not_found" : "pas trouvé",
         "search": "Cherche ton Pokémon",
         "lvl": "niveau",
         "evo_chain" :"Chaîne d'évolution"
@@ -158,6 +158,7 @@ let language_other_data = [
         "speed": "Velocità",
         "total": "Totale",
         "fact": "I fatti",
+        "not_found" : "non trovato",
         "search": "Cerca il tuo Pokémon",
         "lvl": "livello",
         "evo_chain" :"Catena di evoluzione"
@@ -194,6 +195,7 @@ let language_other_data = [
         "speed": "Velocidad",
         "total": "Total",
         "fact": "Hechos",
+        "not_found" : "extraviado",
         "search": "Busca tu Pokémon",
         "lvl": "nivel",
         "evo_chain" :"Cadena de evolución"
@@ -230,6 +232,7 @@ let language_other_data = [
         "speed": "速さ",
         "total": "合計",
         "fact": "事実",
+        "not_found" : "見つかりません",
         "search": "あなたのポケモンを探してください",
         "lvl": "レベル",
         "evo_chain" :"進化の連鎖"

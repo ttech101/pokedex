@@ -1,9 +1,9 @@
 
 function init() {
     loadBlock();
-    //loadOtherLanguages(language);
-    scrollToTop();
 
+    scrollToTop();
+    
 }
 
 async function loadBlock() {
@@ -21,6 +21,7 @@ async function loadBlock() {
     } else {
         console.log('STOP! Es wurden ' + card_number + ' Karten geladen.');
         console.log('Pokemon Main= ', pokemon_main)
+        loadOtherLanguages(language);
     }
 }
 
@@ -230,18 +231,23 @@ function loadingScreenRemove() {
 };
 
 function searchPokemon() {
-    let search = document.getElementById('search_input').value;
+    let search_top = document.getElementById('search_input').value;
+    let search_bottom = document.getElementById('search_input_bottom').value;
+
+    let search = search_top + search_bottom;
+    console.log(search);
+
     search = search.toLowerCase();
     let found = 0;
     for (let i = 0; i < pokemon_main.length; i++) {
         const element = pokemon_main[i];
         for (let j = 0; j < pokemon_main[i].designation.length; j++) {
             const element = pokemon_main[i].designation[j];
-            let card_number = i ;
+            let card_number = i;
             if (element.text.toLowerCase().includes(search)) {
                 document.getElementById(`card-number-${card_number}`).classList.remove('dn');
                 found++;
-                console.log(found);
+                //console.log(found);
                 break;
             } else {
                 document.getElementById(`card-number-${card_number}`).classList.add('dn');
@@ -268,7 +274,7 @@ window.addEventListener('scroll', function () {
 });
 
 function serachNotFound(found) {
-    console.log(found);
+    console.log('gefunden:', found);
     if (found == 0) {
         document.getElementById('search-not-found').style.display = "";
     } else {
@@ -312,6 +318,7 @@ function showCard(option) {
 }
 
 function loadCard(i) {
+    console.log('der absolute start:', i)
     showCard('ture');
     loadCardOption('about')
     id = i,
@@ -341,7 +348,7 @@ function loadCardElements(i) {
     loadBottomSmallCard(i);
     console.warn(pokemon_main[i]['img'])
     document.getElementById('card-img').src = pokemon_main[i]['img'];
-    document.getElementById('card-screen-bg').classList = `card rounded-5 border-0 mt-4 ${pokemon_main[i]['bg_color']}`;
+    document.getElementById('card-screen-bg').classList = `card-screen-small card rounded-5 border-0 mt-4 ${pokemon_main[i]['bg_color']}`;
 
 }
 
@@ -382,12 +389,21 @@ function translator4Instance(id, paragraph, translate_in, tabel) {
 };
 
 function loadStats(i) {
-    loadEvolutionStats(i);
-    translateLayout(i);
-    loadStatsAbout(i);
-    loadStatsbasestats(i);
-    loadBottomSmallCard(i);
-    cardTypsSmall(i)
+    console.log('weiter oben', i);
+
+    if (typeof i == 'string') {
+        console.warn('drinnen;', i);
+        i = 1;
+        loadStats(i);
+    } else {
+        
+        translateLayout(i);
+        loadStatsAbout(i);
+        loadStatsbasestats(i);
+        loadBottomSmallCard(i);
+        cardTypsSmall(i)
+        loadEvolutionStats(i);
+    }
 };
 
 function translateLayout() {
@@ -463,7 +479,7 @@ function createEggGroup(id) {
             group = group.replace("1", "");
             document.getElementById('card-egg_groups').innerHTML += `<b>${group} </b>`;
         } else {
-            document.getElementById('card-egg_groups').innerHTML = not_found;
+            document.getElementById('card-egg_groups').innerHTML = notFoundTranslate();
         }
     }
 }
@@ -476,7 +492,7 @@ function createAbilities(id) {
         if (group !== undefined) {
             document.getElementById('card-abilities').innerHTML += `<b>${group} </b>`;
         } else {
-            document.getElementById('card-abilities').innerHTML = not_found;
+            document.getElementById('card-abilities').innerHTML = notFoundTranslate();
         }
     }
 }
@@ -489,7 +505,7 @@ function createHabitat(id) {
         if (group !== undefined) {
             document.getElementById('card-egg_cycle').innerHTML = `<b>${group} </b>`;
         } else {
-            document.getElementById('card-egg_cycle').innerHTML = not_found;
+            document.getElementById('card-egg_cycle').innerHTML = notFoundTranslate();
         }
     }
 }
@@ -552,6 +568,7 @@ function changeBaseStatsLoad() {
 }
 
 function loadEvolutionStats(i) {
+    console.log('dsasdsdasad:', i + 6)
     if (pokemon_main[i].evolution_chain.length == 3) {
         createEvolutionTemplate3(i);
     } else if (pokemon_main[i].evolution_chain.length == 2) {
@@ -560,31 +577,26 @@ function loadEvolutionStats(i) {
 }
 
 function loadBottomSmallCard(i) {
-    console.log('hier hallo:', i)
-
     let addi = i + 1;
     let remove1 = i - 1;
-
     if (i == 0) {
         document.getElementById('left-card').innerHTML = `
-        <div style="height: 30px; width: 30px;"></div>
-        `;
-
+        <div style="height: 30px; width: 30px;"></div>`;
+        document.getElementById("right-card").onclick = function () { loadCard(1) };
         i = 0;
     } else {
-        document.getElementById('left-card').innerHTML = `  <svg  style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
-        viewBox="0 0 24 24">
-        <g transform="scale(-1, 1) translate(-24, 0)">
-          <path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
-        </g>
-      </svg>`;
+        document.getElementById('left-card').innerHTML = createSmallBottomLeft();
         document.getElementById("left-card").onclick = function () { loadCard(remove1) };
-
         document.getElementById("right-card").onclick = function () { loadCard(addi) };
-
     }
+}
 
-
-
-
+function notFoundTranslate() {
+    console.log('hier');
+    for (let i = 0; i < language_other_data.length; i++) {
+        const element = language_other_data[i];
+        if (element.language == language) {
+            return element.not_found;
+        }
+    }
 }

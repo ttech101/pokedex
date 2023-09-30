@@ -21,25 +21,12 @@
 
 <body id="body" onload="init()">
   <div class="navbar-header" id="nav-header">
-    <nav class="navbar bg-body-tertiary rounded-5 shadow rounded-top-0">
+    <nav class="navbar bg-body-tertiary rounded-4 shadow rounded-top-0">
       <div class="container-fluid justify-content-center">
         <a id="brand" class="navbar-brand">Pokedex</a>
-        <div class="dropdown">
-          <!--  
-          <button id="typen_search" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Typen
-          </button>
- 
-         <ul id="dropdown-menu-typs" class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        -->
-        </div>
-        <form class="d-flex" role="search">
-          <input id="search_input" onkeyup="searchPokemon()" class="form-control ms-2" type="text"
+      
+        <form class=" d-flex " role="search">
+          <input id="search_input" onkeyup="searchPokemon()" class="form-control ms-2 search-top" type="text"
             placeholder="Suche dein Pokemon" aria-label="Search">
         </form>
         <div class="dropdown ms-2">
@@ -72,8 +59,6 @@
     </nav>
   </div>
 
-
-
   <div id="loader" class="loader">
     <div class="loader-arrangement">
       <div>
@@ -102,8 +87,8 @@
   </div>
 
   <div id="card-screen" class="dn">
-    <div class="d-flex justify-content-center align-items-center">
-      <div id="card-screen-bg" class="card rounded-5 border-0 mt-4" style="width: 20rem;">
+    <div class="d-flex justify-content-center align-items-center ">
+      <div id="card-screen-bg" class="card rounded-5 border-0 mt-4 card-screen-small">
         <div class="">
           <div class="">
             <div class="d-flex justify-content-around pt-2">
@@ -116,20 +101,20 @@
           </div>
           <div class="d-flex justify-content-between card-header-individually">
             <div id="left-card" class="">
-            <svg  style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
-              viewBox="0 0 24 24">
-              <g transform="scale(-1, 1) translate(-24, 0)">
-                <path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
-              </g>
-            </svg>
+              <svg class="card-hover" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100"
+                height="100" viewBox="0 0 24 24">
+                <g transform="scale(-1, 1) translate(-24, 0)">
+                  <path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
+                </g>
+              </svg>
             </div>
             <h2 id="card-name">Bisasas</h2>
-            <div id="right-card">
-            <svg  style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
-              viewBox="0 0 24 24">
-              <path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
-            </svg>
-          </div>
+            <div id="right-card" class="">
+              <svg class="card-hover" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100"
+                height="100" viewBox="0 0 24 24">
+                <path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
+              </svg>
+            </div>
           </div>
           <img class="card-bg-img" src="./img/Pokeball-PNG-Free-Download.png" class="card-img-top" alt="...">
           <div class="header-card-title">
@@ -145,29 +130,29 @@
           <img id="card-img" class="img-fluid rounded-start pokemon card-pokemon-img" src="" alt="...">
 
           <div class="card-body rounded-top-4 p-0">
-            <div class=" rounded-5 bg p-2" style="font-size: 16px;">
+            <div class=" rounded-5 bg p-2" style="font-size: 15px;">
               <ul class="nav nav-tabs d-flex justify-content-around ms-2 me-2 mt-4 mb-2">
-                <li class="nav-item">
+                <li class="nav-item ">
                   <a id="about-option" onclick="loadCardOption('about')"
-                    class="nav-link card-head-nav active nav-card-color" aria-current="page" href="#">Übersicht</a>
+                    class="nav-link card-head-nav active nav-card-color p-1" aria-current="page" href="#">Übersicht</a>
                 </li>
                 <li class="nav-item">
                   <a id="base-stats-option" onclick="loadCardOption('base-stats')"
-                    class="nav-link card-head-nav nav-card-color" href="#">Basisdaten</a>
+                    class="nav-link card-head-nav nav-card-color p-1" href="#">Basisdaten</a>
                 </li>
                 <li class="nav-item">
                   <a id="evolution-option" onclick="loadCardOption('evolution')"
-                    class="nav-link card-head-nav nav-card-color" href="#">Evolution</a>
+                    class="nav-link card-head-nav nav-card-color p-1" href="#">Evolution</a>
                 </li>
               </ul>
               <div id="about" class="stats-box dn">
                 <div class="d-flex justify-content-between">
                   <div class="about-left">
-                    <p id="translate-species" class="mb-2">Species</p>
-                    <p id="translate-height" class="mb-2">Height</p>
-                    <p id="translate-weight" class="mb-2">Weight</p>
-                    <p id="translate-abilities" class="mb-2">Abilities</p>
-                    <h5 id="translate-breeding">Breeding</h5>
+                    <p id="translate-species" class="mb-2 about-data-left">Species</p>
+                    <p id="translate-height" class="mb-2 about-data-left">Height</p>
+                    <p id="translate-weight" class="mb-2 about-data-left">Weight</p>
+                    <p id="translate-abilities" class="mb-2 about-data-left">Abilities</p>
+
                   </div>
                   <div class="about-right">
                     <p class="mb-2"><b id="card-species">Seed</b></p>
@@ -176,11 +161,12 @@
                     <p id="card-abilities" class="mb-2">what???</p>
                   </div>
                 </div>
+                <h5 id="translate-breeding">Breeding</h5>
                 <div class="d-flex justify-content-between">
                   <div class="about-left">
-                    <p id="translate-gender" class="mb-2">Gender</p>
-                    <p id="translate-egg_groups" class="mb-2">Egg Groups</p>
-                    <p id="translate-egg_cycle" class="mb-2">Egg Cycle</p>
+                    <p id="translate-gender" class="mb-2 about-data-left">Gender</p>
+                    <p id="translate-egg_groups" class="mb-2 about-data-left">Egg Groups</p>
+                    <p id="translate-egg_cycle" class="mb-2 about-data-left">Egg Cycle</p>
                   </div>
                   <div class="about-right">
                     <div class="d-flex justify-content-start ">
@@ -359,6 +345,24 @@
       </div>
     </div>
   </div>
+
+
+
+
+  <div class="navbar-footer serch-footer" id="nav-header">
+    <nav class="navbar bg-body-tertiary rounded-3 shadow rounded-bottom-0">
+      <div class="container-fluid justify-content-center">
+      <form class="d-flex" role="search">
+        <input id="search_input_bottom" onkeyup="searchPokemon()" class="form-control ms-2" type="text"
+          placeholder="Suche dein Pokemon" aria-label="Search">
+      </form>
+      </div>
+
+      
+  </div>
+
+
+
 
   <button id="scrollTopButton" title="Nach oben">
     <span>&#8593;</span>
