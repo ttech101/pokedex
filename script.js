@@ -278,8 +278,8 @@ function serachNotFound(found) {
 
 };
 
-function loadCardOption(lauyout) {
-    opinion = lauyout;
+function loadCardOption(layout) {
+    opinion = layout;
     removeClasslistCard();
     if (opinion == 'about') {
         document.getElementById('about-option').classList.add('active');
@@ -317,17 +317,18 @@ function showCard(option) {
     }
 }
 
-function loadCard(i,opinion) {
+function loadCard(i,layout) {
     disableSearchBottom();
     showCard('ture');
-    loadCardOption(opinion)
+    loadStats(i);
+    loadCardOption(layout)
     id = i,
         loadCardElements(i);
     cardTypsSmall(i, language)
     console.log('karten index=', i)
     console.log('karten Nummer=', i)
     document.getElementById('card-id').innerHTML = pokemonId(i + 1);
-    loadStats(i);
+    
     loadLikePokemon(id);
 }
 
@@ -393,11 +394,12 @@ function loadStats(i) {
         i = 1;
         loadStats(i);
     } else {
+         loadEvolutionStats(i);
         loadStatsAbout(i);
         loadStatsbasestats(i);
         loadBottomSmallCard(i);
         cardTypsSmall(i)
-        loadEvolutionStats(i);
+       
         translateLayout(i);
     }
 };

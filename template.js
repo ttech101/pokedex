@@ -209,7 +209,7 @@ function createEvolutionTemplate3(id) {
     <h5 id="header_bas_stats" class="text-center mb-4" >Evolutiondsa Chain</h5>
                 <div class="d-flex justify-content-between justify-content-center">
                   <div class="evolution-left d-flex justify-content-center flex-column">
-                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index})"
+                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
                     <p class="text-center"><b>${name_stufe1}</b></p>
@@ -224,7 +224,7 @@ function createEvolutionTemplate3(id) {
                     <p class="text-center"><b id="lvl-status1">Lvl</b></p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column ">
-                    <img  onclick="loadCard(${pokemon_main[id].evolution_chain[1].index})"
+                    <img  onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
                     <p class="text-center"><b>${name_stufe2}</b></p>
@@ -233,7 +233,7 @@ function createEvolutionTemplate3(id) {
                 <div span class="border-bottom mb-3"></div>
                 <div class="d-flex justify-content-between justify-content-center">
                   <div class="evolution-left d-flex justify-content-center flex-column">
-                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index})"
+                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
                     <p class="text-center"><b>${name_stufe2}</b></p>
@@ -248,7 +248,7 @@ function createEvolutionTemplate3(id) {
                     <p class="text-center"><b id="lvl-status2">Lvl </b></p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column ">
-                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[2].index})"
+                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[2].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[2].index + 1}.svg"
                       alt="">
                     <p class="text-center"><b>${name_stufe3}</b></p>
@@ -279,7 +279,7 @@ function createEvolutionTemplate2(id) {
     <h5 id="header_bas_stats" class="text-center mb-4" >Evolution Chain</h5>
                 <div class="d-flex justify-content-between justify-content-center">
                   <div class="evolution-left d-flex justify-content-center flex-column">
-                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index})"
+                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
                     <p class="text-center"><b>${name_stufe1}</b></p>
@@ -294,7 +294,7 @@ function createEvolutionTemplate2(id) {
                     <p class="text-center"><b id="lvl-status1">Lvl </b></p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column ">
-                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index})"
+                    <img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
                     <p class="text-center"><b>${name_stufe2}</b></p>
