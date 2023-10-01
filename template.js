@@ -1,3 +1,8 @@
+/**
+ * This function creates the individual cards
+ * 
+ */
+
 function createSmallCard() {
     let id_number = card_number - 1;
     if (pokemon_main[id_number].like == 1) {
@@ -43,6 +48,12 @@ function createSmallCard() {
         }
     }
 }
+
+/**
+ * This function translates the layout in the selected language
+ * 
+ * @param {String} l Language choice of language
+ */
 
 function changeLanguages(l) {
     for (let h = 0; h < language_other_data.length; h++) {
@@ -106,45 +117,56 @@ function changeLanguages(l) {
     }
 }
 
-function createSliderBottom() {
-    for (let i = 0; i < designation.length; i++) {
-        const element = designation[i];
-        if (element.language == language) {
-            document.getElementById('silder-bottom').innerHTML += `
-            <swiper-slide class="d-flex justify-content-center">
-        <div id="card-number-${card_number}" class=" card border-2 shadow m-3 ${bg_color} " style="width: 250px; height: 170px;">
-            <div class=" g-0 d-flex p-0 justify-content-center pokeball-img">
-                <div style="">
-                    <div class="card-body ">
-                        <h5 class="card-title" id="name-small-${card_number}">${designation[i]['text']}</h5>
-                        <div id="typs-small-${card_number}" class="typ-small">
-                     
-                        </div>
-                    </div>
-                    <div>
-                        <p class="card-body pt-0 pb-0 id-style">${id}</p>
-                    </div>
-                </div>
-                <div class="">
-                    <img class="img-fluid rounded-start pokemon"
-                    src="${img}"alt="...">
-                </div>
-            </div>
-        </div>
-        </swiper-slide>
-        `;
-        }
-    }
-    for (let i = 0; i < typs.length; i++) {
-        const element = typs[i];
-        if (element.language == language) {
-            document.getElementById(`typs-small-${card_number}`).innerHTML += `
-            <span class=" mb-2 badge rounded-pill shadow ${bg_color}-typs">${element.text}</span>
-            `;
-        }
-    }
-}
 
+
+//function createSliderBottom1() {
+//    for (let i = 0; i < designation.length; i++) {
+//        const element = designation[i];
+//        if (element.language == language) {
+//            document.getElementById('silder-bottom').innerHTML += `
+//            <swiper-slide class="d-flex justify-content-center">
+//        <div id="card-number-${card_number}" class=" card border-2 shadow m-3 ${bg_color} " style="width: 250px; height: 170px;">
+//            <div class=" g-0 d-flex p-0 justify-content-center pokeball-img">
+//                <div style="">
+//                    <div class="card-body ">
+//                        <h5 class="card-title" id="name-small-${card_number}">${designation[i]['text']}</h5>
+//                        <div id="typs-small-${card_number}" class="typ-small">
+//                     
+//                        </div>
+//                    </div>
+//                    <div>
+//                        <p class="card-body pt-0 pb-0 id-style">${id}</p>
+//                    </div>
+//                </div>
+//                <div class="">
+//                    <img class="img-fluid rounded-start pokemon"
+//                    src="${img}"alt="...">
+//                </div>
+//            </div>
+//        </div>
+//        </swiper-slide>
+//        `;
+//        }
+//    }
+//    for (let i = 0; i < typs.length; i++) {
+//        const element = typs[i];
+//        if (element.language == language) {
+//            document.getElementById(`typs-small-${card_number}`).innerHTML += `
+//            <span class=" mb-2 badge rounded-pill shadow ${bg_color}-typs">${element.text}</span>
+//            `;
+//        }
+//    }
+//}
+
+
+/**
+ * This function creates connects the data of the base data with a prgress bar
+ * 
+ * @param {String} name           Name of the bar
+ * @param {Number} base_stat      Value of status
+ * @param {String} progress_color Background color of the respective type
+ * @returns 
+ */
 function createStatsTabelSingel(name, base_stat, progress_color) {
     let name_small = name.replace("special-", "sp-");
     let template = `<div class="d-flex justify-content-between align-items-center">
@@ -165,6 +187,15 @@ function createStatsTabelSingel(name, base_stat, progress_color) {
     return template
 }
 
+/**
+ * This function creates the values ​​of the respective bar
+ * 
+ * @param {Number} total                  Value of each bar
+ * @param {String} progress_color_total   Color of the bar divided into 3 levels
+ * @param {Number} total_percent          Total cash
+ * @returns 
+ */
+
 function createStatsTabelEnd(total, progress_color_total, total_percent) {
     let template = `<div class="d-flex justify-content-between align-items-center">
     <div class="basic-data-left ">
@@ -183,6 +214,12 @@ function createStatsTabelEnd(total, progress_color_total, total_percent) {
 `;
     return template
 }
+
+/**
+ * This function generates the layout for 3 Pokomons
+ * 
+ * @param {Number} id id of the respective card
+ */
 
 function createEvolutionTemplate3(id) {
     for (let k = 0; k < pokemon_main[id].evolution_chain.length; k++) {
@@ -256,6 +293,11 @@ function createEvolutionTemplate3(id) {
                 `;
 }
 
+/**
+ * This function generates the layout for 2 Pokomons
+ * 
+ * @param {Number} id id of the respective card
+ */
 
 function createEvolutionTemplate2(id) {
     for (let k = 0; k < pokemon_main[id].evolution_chain.length; k++) {
@@ -302,11 +344,16 @@ function createEvolutionTemplate2(id) {
                 `;
 }
 
+/**
+ * This function generates an abort scenario if all 3 have not been loaded
+ * 
+ * @param {Number} id id of the respective card
+ */
+
 function createEvolutionTemplate3NotFound(id) {
     var name_stufe1 = '-';
     var name_stufe2 = '-';
     var name_stufe3 = '-';
-
     for (let k = 0; k < pokemon_main[id].evolution_chain.length; k++) {
         const element = pokemon_main[id].evolution_chain[k];
         var index = element.index;
@@ -331,7 +378,6 @@ function createEvolutionTemplate3NotFound(id) {
             var not_found_index = '#' + (index + 1);
         }
     }
-
     document.getElementById('evolution').innerHTML = `
     <h5 id="header_bas_stats" class="text-center mb-4" >Evolutiondsa123 Chain</h5>
                 <div class="d-flex justify-content-between justify-content-center">
@@ -386,10 +432,13 @@ function createEvolutionTemplate3NotFound(id) {
                 <h4 class="text-center mt-0"><b>---> ${not_found_index} <---</b></h4
                 </div>
                 `;
-
-
 }
 
+/**
+ * This function generates an abort scenario if all 2 have not been loaded
+ * 
+ * @param {Number} id id of the respective card
+ */
 
 function createEvolutionTemplate2NotFound(id) {
     for (let k = 0; k < pokemon_main[id].evolution_chain.length; k++) {
@@ -443,6 +492,13 @@ function createEvolutionTemplate2NotFound(id) {
                 `;
 }
 
+/**
+ * 
+This function generates the left arrow for each card
+ * 
+ * @returns arrow
+ */
+
 function createSmallBottomLeft() {
     let a = `  <svg class="card-hover" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
     viewBox="0 0 24 24">
@@ -452,6 +508,13 @@ function createSmallBottomLeft() {
   </svg>`;
     return a;
 }
+
+/**
+ * 
+This function generates the right arrow for each card
+ * 
+ * @returns arrow
+ */
 
 function createSmallBottomRight() {
     let a = `  <svg class="card-hover" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100"

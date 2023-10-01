@@ -10,7 +10,6 @@ body {
     width: 100%;
 }
 
-
 .bg {
     background-color: white;
 }
@@ -155,7 +154,6 @@ body {
 
 .id-stype-card {
     color: rgba(0, 0, 0, 0.4);
-
 }
 
 .card-title {
@@ -198,7 +196,6 @@ body {
     background-position: 20px center;
     background-repeat: no-repeat;
 
-
     .pokemon {
         height: 100px;
         transition: 0.5s;
@@ -209,7 +206,6 @@ body {
 
 .pokemon {
     height: 140px;
-
     margin-top: 20px;
     padding-right: 10px;
     transition: 0.5s;
@@ -321,7 +317,6 @@ body {
     position: absolute;
     left: 35%;
     right: 0;
-
     top: 90px;
     height: 160px;
 }
@@ -365,7 +360,6 @@ body {
 
 .basic-data-left {
     width: 25%;
-
 }
 
 .basic-data-left p {
@@ -381,7 +375,6 @@ body {
     width: 90%;
     text-overflow: ellipsis;
 }
-
 
 .basic-data-center {
     width: 20%;
@@ -402,7 +395,6 @@ body {
     width: 40%;
 }
 
-
 .evolution-right {
     width: 30%;
 }
@@ -414,7 +406,6 @@ body {
 
 .evolution img {
     height: 80px;
-
 }
 
 .nav-card-color {
@@ -453,14 +444,12 @@ body {
     margin-top: 70px;
 }
 
-
 @media (min-width: 500px) {
     .serch-footer {
         display: none;
     }
 
 }
-
 
 @media (max-width: 500px) {
     body {
@@ -498,8 +487,6 @@ body {
     }
 }
 
-
-
 @keyframes gradient-animation {
     0% {
         background-position: 0% 50%;
@@ -514,8 +501,6 @@ body {
     }
 }
 
-
-/* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
     scrollbar-width: auto;

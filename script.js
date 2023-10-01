@@ -1,3 +1,7 @@
+var start = performance.now();
+// CODE, der gemessen werden soll
+
+
 function init() {
     loadBlock();
     scrollToTop();
@@ -6,33 +10,35 @@ function init() {
 async function loadBlock() {
     if (card_number <= loading_counter) {
         card_number++;
-        await loadData(card_number);
+        await loadDataPrimar(card_number);
         pushToLocalCard();
-        loadPokemonEgg_groups(card_number - 1);
-        loadPokemonAbilities(card_number - 1);
-        leadPokemonHabitat(card_number - 1);
-        loadPokemonEvolutionChain(card_number - 1);
+        loadDataSecondary(card_number - 1);
         createSmallCard();
         loadProgressbar();
         loadLikePokemon(card_number - 1);
         loadBlock();
-        
     } else {
-        //loadingScreenRemove();
-        console.log('STOP! Es wurden ' + card_number + ' Karten geladen.');
-        console.log('Pokemon Main= ', pokemon_main);
         document.getElementById('load-card-more').disabled = false;
         loadOtherLanguages(language);
-
+        var time = performance.now();
+        console.log('Dauer: ' + ((time - start).toFixed(2)) + ' ms.');
     }
 }
 
-async function loadData(card_number) {
+async function loadDataPrimar(card_number) {
     let url_start = loadPokemonMain(card_number);
     let urls = await url_start;
     let a1 = loadPokemonSpecies(urls.species.url);
     let a2 = loadPokemonTyps(urls.types);
     await Promise.all([a1, a2]);
+}
+
+async function loadDataSecondary(id) {
+    let a1 = loadPokemonEgg_groups(id);
+    let a2 = loadPokemonAbilities(id);
+    let a3 = leadPokemonHabitat(id);
+    let a4 = loadPokemonEvolutionChain(id);
+    await Promise.all([a1, a2, a3, a4]);
 }
 
 async function loadPokemonMain(card_number) {
@@ -90,6 +96,8 @@ async function loadPokemonAbilities(id) {
         pokemon_main[id]['abilities'].push(show_pokemon_abilities_AsJson.names);
     }
 }
+
+
 
 
 
@@ -219,11 +227,11 @@ function loadProgressbar() {
     if (card_number >= 10) {
         loadingScreenRemove();
     } else {
-    document.getElementById('body').classList.add('fixed');
-    let percent = card_number / loading_counter;
-    percent = Math.round(percent * 100);
-    document.getElementById('progress-status').style.width = `${percent}%`;
-    document.getElementById('progress-status').innerHTML = `${percent} %`;
+        document.getElementById('body').classList.add('fixed');
+        let percent = card_number / loading_counter;
+        percent = Math.round(percent * 100);
+        document.getElementById('progress-status').style.width = `${percent}%`;
+        document.getElementById('progress-status').innerHTML = `${percent} %`;
     }
 }
 
@@ -327,12 +335,10 @@ function loadCard(i, layout) {
     loadStats(i);
     loadCardOption(layout)
     id = i,
-        loadCardElements(i);
+    loadCardElements(i);
     cardTypsSmall(i, language)
-    console.log('karten index=', i)
-    console.log('karten Nummer=', i)
     document.getElementById('card-id').innerHTML = pokemonId(i + 1);
-
+    loadBottomSmallCard(id);
     loadLikePokemon(id);
 }
 
@@ -401,10 +407,10 @@ function loadStats(i) {
         loadEvolutionStats(i);
         loadStatsAbout(i);
         loadStatsbasestats(i);
-        loadBottomSmallCard(i);
         cardTypsSmall(i)
-
+        
         translateLayout(i);
+        //loadBottomSmallCard(i);
     }
 };
 
@@ -573,39 +579,42 @@ function changeBaseStatsLoad() {
 
 function loadEvolutionStats(i) {
     if (pokemon_main[i].evolution_chain.length == 3) {
-        if (pokemon_main[i].evolution_chain[0].index >= card_number && pokemon_main[i].evolution_chain[1].index <= card_number && pokemon_main[i].evolution_chain[2].index <= card_number) {
-            createEvolutionTemplate3NotFound(i);
-        } else {
+        if (pokemon_main[i].evolution_chain[0].index < card_number - 1 && pokemon_main[i].evolution_chain[1].index < card_number - 1 && pokemon_main[i].evolution_chain[2].index < card_number - 1) {
             createEvolutionTemplate3(i);
+        } else {
+            createEvolutionTemplate3NotFound(i);
         }
     }
     if (pokemon_main[i].evolution_chain.length == 2) {
-        if (pokemon_main[i].evolution_chain[0].index >= card_number && pokemon_main[i].evolution_chain[1].index <= card_number) {
-            createEvolutionTemplate2NotFound(i);
-        } else {
+        if (pokemon_main[i].evolution_chain[0].index < card_number - 1 && pokemon_main[i].evolution_chain[1].index > card_number - 1) {
             createEvolutionTemplate2(i);
+        } else {
+            createEvolutionTemplate2NotFound(i);
         }
     }
 }
 
 function loadBottomSmallCard(i) {
+    console.warn(i)
     let addi = i + 1;
-    let remove1 = i - 1;
+    let removei = i - 1;
     if (i == 0) {
         document.getElementById('left-card').innerHTML = `
         <div style="height: 30px; width: 30px;"></div>`;
+        document.getElementById('right-card').innerHTML = createSmallBottomRight();
         document.getElementById("right-card").onclick = function () { loadCard(1, opinion) };
         i = 0;
     } else
+
         if (i == loading_counter) {
             document.getElementById('right-card').innerHTML = `
             <div style="height: 30px; width: 30px;"></div>`;
+            document.getElementById('left-card').innerHTML = createSmallBottomLeft();
             document.getElementById("left-card").onclick = function () { loadCard(loading_counter - 1, opinion) };
         } else {
             document.getElementById('left-card').innerHTML = createSmallBottomLeft();
             document.getElementById('right-card').innerHTML = createSmallBottomRight();
-            document.getElementById("left-card").onclick = function () { loadCard(remove1, opinion) };
-
+            document.getElementById("left-card").onclick = function () { loadCard(removei, opinion) };
             document.getElementById("right-card").onclick = function () { loadCard(addi, opinion) };
         }
 }
@@ -629,7 +638,6 @@ function enableSearchBottom() {
 }
 
 function likePokemon() {
-
     if (like_list[id] == "") {
         like_list[id] = 1;
         saveLikeList();
@@ -687,6 +695,5 @@ function loadCardMore(i) {
     loading_counter = loading_counter + 10;
     document.getElementById('load-card-more').disabled = true;
     loadBlock();
-    console.log(i);
 }
 

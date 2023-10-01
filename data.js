@@ -2,15 +2,9 @@ const main_url = 'https://pokeapi.co/api/v2/pokemon/';
 let card_number = 0;
 let loading_counter = 10 - 1;
 let language = 'de';
-//let img = "";
 let id = "";
-//let designation = [];
-//let bg_color = "";
 let pokemon_main = [];
-//let typs = [];
-//let pokemon_species = [];
-//let pokemon_typ = [];
-//let pokemon_typs = [];
+let typs = [];
 let like_list = [];
 var opinion ="";
 
