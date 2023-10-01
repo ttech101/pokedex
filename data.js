@@ -1,6 +1,6 @@
 const main_url = 'https://pokeapi.co/api/v2/pokemon/';
 let card_number = 0;
-let loading_counter = 15 - 1;
+let loading_counter = 10 - 1;
 let language = 'de';
 let img = "";
 let id = "";

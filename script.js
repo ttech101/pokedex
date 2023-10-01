@@ -1,7 +1,6 @@
 function init() {
     loadBlock();
     scrollToTop();
-    
 }
 
 async function loadBlock() {
@@ -16,12 +15,19 @@ async function loadBlock() {
         createSmallCard();
         loadLikePokemon(card_number - 1);
         loadBlock();
-        loadProgressbar();
+        if (card_number <= loading_counter + 1) {
+            loadingScreenRemove();
+            document.getElementById('load-card-more').disabled = false;
+        } else {
+            loadProgressbar();
+        }
+
     } else {
         console.log('STOP! Es wurden ' + card_number + ' Karten geladen.');
         console.log('Pokemon Main= ', pokemon_main);
+        document.getElementById('load-card-more').disabled = false;
         loadOtherLanguages(language);
-        
+
     }
 }
 
@@ -190,7 +196,7 @@ function loadOtherLanguages(country) {
     changeLanguages(country);
     language = country;
     loadStats(id);
-    
+
 }
 
 function sortLanguageDesignation(b) {
@@ -216,7 +222,6 @@ function sortLanguageTyps(b, i) {
 function loadProgressbar() {
     if (card_number == loading_counter + 1) {
         loadingScreenRemove();
-        document.getElementById('load-card-more').disabled = false;
     } else {
         document.getElementById('body').classList.add('fixed');
         let percent = card_number / loading_counter;
@@ -320,7 +325,7 @@ function showCard(option) {
     }
 }
 
-function loadCard(i,layout) {
+function loadCard(i, layout) {
     disableSearchBottom();
     showCard('ture');
     loadStats(i);
@@ -331,7 +336,7 @@ function loadCard(i,layout) {
     console.log('karten index=', i)
     console.log('karten Nummer=', i)
     document.getElementById('card-id').innerHTML = pokemonId(i + 1);
-    
+
     loadLikePokemon(id);
 }
 
@@ -397,12 +402,12 @@ function loadStats(i) {
         i = 1;
         loadStats(i);
     } else {
-         loadEvolutionStats(i);
+        loadEvolutionStats(i);
         loadStatsAbout(i);
         loadStatsbasestats(i);
         loadBottomSmallCard(i);
         cardTypsSmall(i)
-       
+
         translateLayout(i);
     }
 };
@@ -593,19 +598,19 @@ function loadBottomSmallCard(i) {
     if (i == 0) {
         document.getElementById('left-card').innerHTML = `
         <div style="height: 30px; width: 30px;"></div>`;
-        document.getElementById("right-card").onclick = function () { loadCard(1,opinion) };
+        document.getElementById("right-card").onclick = function () { loadCard(1, opinion) };
         i = 0;
     } else
         if (i == loading_counter) {
             document.getElementById('right-card').innerHTML = `
             <div style="height: 30px; width: 30px;"></div>`;
-            document.getElementById("left-card").onclick = function () { loadCard(loading_counter - 1,opinion) };
+            document.getElementById("left-card").onclick = function () { loadCard(loading_counter - 1, opinion) };
         } else {
             document.getElementById('left-card').innerHTML = createSmallBottomLeft();
             document.getElementById('right-card').innerHTML = createSmallBottomRight();
-            document.getElementById("left-card").onclick = function () { loadCard(remove1,opinion) };
+            document.getElementById("left-card").onclick = function () { loadCard(remove1, opinion) };
 
-            document.getElementById("right-card").onclick = function () { loadCard(addi,opinion) };
+            document.getElementById("right-card").onclick = function () { loadCard(addi, opinion) };
         }
 }
 

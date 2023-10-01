@@ -48,7 +48,6 @@ function changeLanguages(l) {
     for (let h = 0; h < language_other_data.length; h++) {
         const element = language_other_data[h];
         if (element.language == l) {
-            document.getElementById('')
             document.getElementById('load-card-more').innerHTML = `${element['10_cards']}`;
             document.getElementById('country').innerHTML = `
             <img  class="menu-flag justify-content-between align-items-center" src="./img/icon/${element.language}.png" alt="">${element.speak}`;
