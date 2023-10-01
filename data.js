@@ -11,6 +11,8 @@ let typs = [];
 let pokemon_species = [];
 let pokemon_typ = [];
 let pokemon_typs = [];
+let like_list = [];
+var opinion ="";
 
 let language_other_data = [
     {
@@ -50,6 +52,8 @@ let language_other_data = [
         "not_found" : "nicht gefunden",
         "search": "Suche dein Pokémon",
         "lvl": "Stufe",
+        "10_cards": "10 weitere Karten Laden",
+        "evo_not_found": "Es müssen noch folgende Karten geladen werden ",
         "evo_chain" :"Evolutionskette"
     },
     {
@@ -87,6 +91,8 @@ let language_other_data = [
         "not_found" : "Not found",
         "search": "Search your Pokémon",
         "lvl": "Level",
+        "10_cards": "Load 10 more cards",
+        "evo_not_found": "The following cards still need to be loaded ",
         "evo_chain" :"Evolution chain"
     },
     {
@@ -124,6 +130,8 @@ let language_other_data = [
         "not_found" : "pas trouvé",
         "search": "Cherche ton Pokémon",
         "lvl": "niveau",
+        "10_cards": "Chargez 10 cartes supplémentaires",
+        "evo_not_found": "Les cartes suivantes doivent encore être chargées",
         "evo_chain" :"Chaîne d'évolution"
     },
     {
@@ -161,6 +169,8 @@ let language_other_data = [
         "not_found" : "non trovato",
         "search": "Cerca il tuo Pokémon",
         "lvl": "livello",
+        "10_cards": "Carica altre 10 carte",
+        "evo_not_found": "Le seguenti mappe devono ancora essere caricate",
         "evo_chain" :"Catena di evoluzione"
     },
     {
@@ -198,6 +208,8 @@ let language_other_data = [
         "not_found" : "extraviado",
         "search": "Busca tu Pokémon",
         "lvl": "nivel",
+        "10_cards": "Cargue 10 tarjetas más",
+        "evo_not_found": "Aún es necesario cargar los siguientes mapas.",
         "evo_chain" :"Cadena de evolución"
     },
     {
@@ -235,6 +247,8 @@ let language_other_data = [
         "not_found" : "見つかりません",
         "search": "あなたのポケモンを探してください",
         "lvl": "レベル",
+        "10_cards": "さらに10枚のカードをロードする",
+        "evo_not_found": "次のマップはまだロードする必要があります",
         "evo_chain" :"進化の連鎖"
     }
 ];
