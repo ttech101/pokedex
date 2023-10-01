@@ -18,11 +18,15 @@ async function loadBlock() {
         loadLikePokemon(card_number - 1);
         loadBlock();
     } else {
-        document.getElementById('load-card-more').disabled = false;
-        loadOtherLanguages(language);
-        var time = performance.now();
-        console.log('Dauer: ' + ((time - start).toFixed(2)) + ' ms.');
+        BlockEnd();
     }
+}
+
+function BlockEnd() {
+    document.getElementById('load-card-more').disabled = false;
+    loadOtherLanguages(language);
+    var time = performance.now();
+    console.log('Dauer: ' + ((time - start).toFixed(2)) + ' ms.');
 }
 
 async function loadDataPrimar(card_number) {
@@ -96,10 +100,6 @@ async function loadPokemonAbilities(id) {
         pokemon_main[id]['abilities'].push(show_pokemon_abilities_AsJson.names);
     }
 }
-
-
-
-
 
 async function loadPokemonEvolutionChain(id) {
     let evolution_chain_temp = pokemon_main[id].evolution_chain.url;
@@ -240,7 +240,7 @@ function loadingScreenRemove() {
     const loader = document.getElementById('loader');
     loader.style.display = "none";
     document.getElementById('body').classList.remove('fixed');
-};
+}
 
 function searchPokemon() {
     let search_top = document.getElementById('search_input').value;
@@ -250,28 +250,33 @@ function searchPokemon() {
     let found = 0;
     for (let i = 0; i < pokemon_main.length; i++) {
         const element = pokemon_main[i];
-        for (let j = 0; j < pokemon_main[i].designation.length; j++) {
-            const element = pokemon_main[i].designation[j];
-            let card_number = i;
-            if (element.text.toLowerCase().includes(search)) {
-                document.getElementById(`card-number-${card_number}`).classList.remove('dn');
-                found++;
-                break;
-            } else {
-                document.getElementById(`card-number-${card_number}`).classList.add('dn');
-            }
-        };
+        found = searchPokemonDesignation(i, search, found);
         serachNotFound(found);
     };
-};
+}
+
+function searchPokemonDesignation(i, search, found) {
+    for (let j = 0; j < pokemon_main[i].designation.length; j++) {
+        const element = pokemon_main[i].designation[j];
+        let card_number = i;
+        if (element.text.toLowerCase().includes(search)) {
+            document.getElementById(`card-number-${card_number}`).classList.remove('dn');
+            found++;
+            break;
+        } else {
+            document.getElementById(`card-number-${card_number}`).classList.add('dn');
+        };
+    };
+    return found;
+}
+
 
 function scrollToTop() {
     document.getElementById('scrollTopButton').addEventListener('click', function () {
-
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     });
-};
+}
 
 window.addEventListener('scroll', function () {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 200) {
@@ -279,7 +284,7 @@ window.addEventListener('scroll', function () {
     } else {
         document.getElementById('scrollTopButton').style.display = 'none';
     }
-});
+})
 
 function serachNotFound(found) {
     if (found == 0) {
@@ -287,28 +292,41 @@ function serachNotFound(found) {
     } else {
         document.getElementById('search-not-found').style.display = "none";
     }
-
-};
+}
 
 function loadCardOption(layout) {
     opinion = layout;
     removeClasslistCard();
     if (opinion == 'about') {
-        document.getElementById('about-option').classList.add('active');
-        document.getElementById('about').classList.remove('dn');
-        opinion = 'about';
+        loadCardOptionAbout(opinion);
     }
     if (opinion == 'base-stats') {
-        document.getElementById('base-stats-option').classList.add('active');
-        document.getElementById('base-stats').classList.remove('dn');
-        opinion = 'base-stats';
+        loadCardOptionBaseStats(opinion);
     }
     if (opinion == 'evolution') {
-        document.getElementById('evolution-option').classList.add('active');
-        document.getElementById('evolution').classList.remove('dn');
-        opinion = 'evolution';
+        loadCardOptionEvolution(opinion);
     }
 }
+
+function loadCardOptionAbout(opinion) {
+    document.getElementById('about-option').classList.add('active');
+    document.getElementById('about').classList.remove('dn');
+    opinion = 'about';
+}
+
+function loadCardOptionBaseStats(opinion) {
+    document.getElementById('base-stats-option').classList.add('active');
+    document.getElementById('base-stats').classList.remove('dn');
+    opinion = 'base-stats';
+}
+
+function loadCardOptionEvolution(opinion) {
+    document.getElementById('evolution-option').classList.add('active');
+    document.getElementById('evolution').classList.remove('dn');
+    opinion = 'evolution';
+}
+
+
 function removeClasslistCard() {
     document.getElementById('about-option').classList.remove('active');
     document.getElementById('about').classList.add('dn');
@@ -335,8 +353,8 @@ function loadCard(i, layout) {
     loadStats(i);
     loadCardOption(layout)
     id = i,
-    loadCardElements(i);
-    cardTypsSmall(i, language)
+    loadCardElements(id);
+    cardTypsSmall(id, language)
     document.getElementById('card-id').innerHTML = pokemonId(i + 1);
     loadBottomSmallCard(id);
     loadLikePokemon(id);
@@ -348,7 +366,7 @@ function cardTypsSmall(id) {
     for (let i = 0; i < pokemon_main[id].typs.length; i++) {
         let typ = translator2Instance(id, ['typs'], language, i);
         document.getElementById('card-typs-small').innerHTML += `
-        <span class=" mb-2 badge rounded-pill shadow ${pokemon_main[id]['bg_color']}-typs">${typ}</span>`;
+        <span class=" mb-2 badge rounded-pill span shadow ${pokemon_main[id]['bg_color']}-typs">${typ}</span>`;
     }
 }
 
@@ -408,9 +426,7 @@ function loadStats(i) {
         loadStatsAbout(i);
         loadStatsbasestats(i);
         cardTypsSmall(i)
-        
         translateLayout(i);
-        //loadBottomSmallCard(i);
     }
 };
 
@@ -528,7 +544,6 @@ function loadStatsbasestats(i) {
 function createStats(i) {
     document.getElementById('create-base-stats').innerHTML = "";
     let total = 0;
-    let total_percent = 0
     for (let j = 0; j < pokemon_main[i]['stats'].length; j++) {
         const element = pokemon_main[i]['stats'][j];
         if (element.base_stat <= 45) {
@@ -578,15 +593,16 @@ function changeBaseStatsLoad() {
 }
 
 function loadEvolutionStats(i) {
+    number = card_number - 1;
     if (pokemon_main[i].evolution_chain.length == 3) {
-        if (pokemon_main[i].evolution_chain[0].index < card_number - 1 && pokemon_main[i].evolution_chain[1].index < card_number - 1 && pokemon_main[i].evolution_chain[2].index < card_number - 1) {
+        if (pokemon_main[i].evolution_chain[0].index <= number && pokemon_main[i].evolution_chain[1].index <= number && pokemon_main[i].evolution_chain[2].index <= number) {
             createEvolutionTemplate3(i);
         } else {
             createEvolutionTemplate3NotFound(i);
         }
     }
     if (pokemon_main[i].evolution_chain.length == 2) {
-        if (pokemon_main[i].evolution_chain[0].index < card_number - 1 && pokemon_main[i].evolution_chain[1].index > card_number - 1) {
+        if (pokemon_main[i].evolution_chain[0].index <= number && pokemon_main[i].evolution_chain[1].index >= number) {
             createEvolutionTemplate2(i);
         } else {
             createEvolutionTemplate2NotFound(i);
@@ -595,28 +611,34 @@ function loadEvolutionStats(i) {
 }
 
 function loadBottomSmallCard(i) {
-    console.warn(i)
     let addi = i + 1;
     let removei = i - 1;
     if (i == 0) {
-        document.getElementById('left-card').innerHTML = `
-        <div style="height: 30px; width: 30px;"></div>`;
-        document.getElementById('right-card').innerHTML = createSmallBottomRight();
-        document.getElementById("right-card").onclick = function () { loadCard(1, opinion) };
-        i = 0;
+        loadBottomSmallCardLeft()
     } else
-
         if (i == loading_counter) {
-            document.getElementById('right-card').innerHTML = `
-            <div style="height: 30px; width: 30px;"></div>`;
-            document.getElementById('left-card').innerHTML = createSmallBottomLeft();
-            document.getElementById("left-card").onclick = function () { loadCard(loading_counter - 1, opinion) };
+            loadBottomSmallCardRight()
         } else {
             document.getElementById('left-card').innerHTML = createSmallBottomLeft();
             document.getElementById('right-card').innerHTML = createSmallBottomRight();
             document.getElementById("left-card").onclick = function () { loadCard(removei, opinion) };
             document.getElementById("right-card").onclick = function () { loadCard(addi, opinion) };
         }
+}
+
+function loadBottomSmallCardLeft() {
+    document.getElementById('left-card').innerHTML = `
+    <div style="height: 30px; width: 30px;"></div>`;
+    document.getElementById('right-card').innerHTML = createSmallBottomRight();
+    document.getElementById("right-card").onclick = function () { loadCard(1, opinion) };
+    i = 0;
+}
+
+function loadBottomSmallCardRight() {
+    document.getElementById('right-card').innerHTML = `
+<div style="height: 30px; width: 30px;"></div>`;
+    document.getElementById('left-card').innerHTML = createSmallBottomLeft();
+    document.getElementById("left-card").onclick = function () { loadCard(loading_counter - 1, opinion) };
 }
 
 function notFoundTranslate() {

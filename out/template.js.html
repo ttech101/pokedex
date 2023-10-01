@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: template.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: template.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * This function creates the individual cards
+ * 
+ */
+
+function createSmallCard() {
+  let id_number = card_number - 1;
+  if (pokemon_main[id_number].like == 1) {
+    bg_color = bg_color + '-animation';
+  }
+  for (let i = 0; i &lt; designation.length; i++) {
+    const element = designation[i];
+    if (element.language == language) {
+      document.getElementById('content-small').innerHTML += `
+        &lt;div onclick="loadCard(${id_number},'about')" id="card-number-${id_number}" class="card border-2 shadow m-3 ${bg_color} " style="width: 250px; height: 170px; ">
+            &lt;div class=" g-0 d-flex p-0 justify-content-between pokeball-img">
+                &lt;div style="">
+                    &lt;div class="card-body ">
+                        &lt;h5 class="card-title" id="name-small-${id_number}">${designation[i]['text']}&lt;/h5>
+                        &lt;div id="typs-small-${id_number}" class="typ-small">
+                     
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div>
+                        &lt;p class="card-body pt-0 pb-0 id-style">${id}&lt;/p>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div class="">
+                    &lt;img class="img-fluid rounded-start pokemon"
+                    src="${img}"alt="...">
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+        `;
+    }
+  }
+  for (let i = 0; i &lt; typs.length; i++) {
+    const element = typs[i];
+    let typ = element;
+
+    for (let l = 0; l &lt; typ.length; l++) {
+      const element = typ[l];
+      if (element.language == language) {
+        document.getElementById(`typs-small-${id_number}`).innerHTML += `
+            &lt;span class=" mb-2 badge rounded-pill shadow ${bg_color}-typs">${element.text}&lt;/span>
+            `;
+      }
+    }
+  }
+}
+
+/**
+ * This function translates the layout in the selected language
+ * 
+ * @param {String} l Language choice of language
+ */
+
+function changeLanguages(l) {
+  for (let h = 0; h &lt; language_other_data.length; h++) {
+    const element = language_other_data[h];
+    if (element.language == l) {
+      document.getElementById('load-card-more').innerHTML = `${element['10_cards']}`;
+      document.getElementById('country').innerHTML = `
+            &lt;img  class="menu-flag justify-content-between align-items-center" src="./img/icon/${element.language}.png" alt="">${element.speak}`;
+      document.getElementById('brand').innerHTML = `${element.brand}`;
+      document.getElementById('flagg-list').innerHTML = `
+            &lt;li onclick="loadOtherLanguages('de')">&lt;a
+                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.de}&lt;img
+                  src="./img/icon/de.png" alt="">&lt;/a>&lt;/li>
+            &lt;li onclick="loadOtherLanguages('en')">&lt;a
+                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.en}&lt;img
+                  src="./img/icon/en.png" alt="">&lt;/a>&lt;/li>
+            &lt;li onclick="loadOtherLanguages('fr')">&lt;a
+                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.fr}&lt;img
+                  src="./img/icon/fr.png" alt="">&lt;/a>&lt;/li>
+            &lt;li onclick="loadOtherLanguages('es')">&lt;a
+                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.es}&lt;img
+                  src="./img/icon/es.png" alt="">&lt;/a>&lt;/li>
+            &lt;li onclick="loadOtherLanguages('it')">&lt;a
+                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.it}&lt;img
+                  src="./img/icon/it.png" alt="">&lt;/a>&lt;/li>
+            &lt;li onclick="loadOtherLanguages('ja')">&lt;a
+                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.ja}&lt;img
+                  src="./img/icon/ja.png" alt="">&lt;/a>&lt;/li>
+                  `;
+      document.getElementById('search-not-found').innerHTML = `
+            &lt;div class="mt-5 d-flex justify-content-center align-items-center flex-column text-center">
+            ${element.load_more}
+            &lt;img style="width: 250px; margin-top: 50px;" src="./img/pokemon-cliparts.png" alt="">
+            &lt;/div>
+            `;
+    }
+  }
+  for (let i = 0; i &lt; pokemon_main.length; i++) {
+    const element = pokemon_main[i];
+    let bg_color = pokemon_main[i].bg_color;
+    let card_number = i;
+    document.getElementById(`typs-small-${card_number}`).innerHTML = '';
+    for (let j = 0; j &lt; pokemon_main[i].designation.length; j++) {
+      const element = pokemon_main[i].designation[j];
+      if (element.language == l) {
+        document.getElementById(`name-small-${card_number}`).innerHTML = `${element.text}`;
+      }
+    }
+    for (let k = 0; k &lt; pokemon_main[i].typs.length; k++) {
+      const element = pokemon_main[i].typs[k];
+      let typs_translate = element;
+      for (let m = 0; m &lt; typs_translate.length; m++) {
+        const element = typs_translate[m];
+        if (element.language == l) {
+          document.getElementById(`typs-small-${card_number}`).innerHTML += `
+                &lt;span class=" mb-2 badge rounded-pill shadow ${bg_color}-typs">${element.text}&lt;/span>
+                `;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * 
+ * This function creates connects the data of the base data with a prgress bar
+ * 
+ * @param {String} name           Name of the bar
+ * @param {String} base_stat      Value of status
+ * @param {String} progress_color Background color of the respective type
+ * @returns                       Return to the finished progress bar
+ * 
+ */
+
+function createStatsTabelSingel(name, base_stat, progress_color) {
+  let name_small = name.replace("special-", "sp-");
+  let template = `&lt;div class="d-flex justify-content-between align-items-center">
+    &lt;div class="basic-data-left ">
+            &lt;p id="translate-${name}" class="mb-2">${name_small}&lt;/p>
+        &lt;/div>
+    &lt;div class="basic-data-center ">
+        &lt;p class="mb-2">&lt;b>${base_stat}&lt;/b>&lt;/p>
+    &lt;/div>
+    &lt;div class="basic-data-right ">
+        &lt;div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
+            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+        &lt;div class="progress-bar  ${progress_color}" style="width: ${base_stat}%">&lt;/div>
+        &lt;/div>
+    &lt;/div>
+&lt;/div>
+`;
+  return template
+}
+
+/**
+ * This function creates the values ​​of the respective bar
+ * 
+ * @param {Number} total                  Value of each bar
+ * @param {String} progress_color_total   Color of the bar divided into 3 levels
+ * @param {Number} total_percent          Total cash
+ * @returns                               Return to the finished progress bar
+ */
+
+function createStatsTabelEnd(total, progress_color_total, total_percent) {
+  let template = `&lt;div class="d-flex justify-content-between align-items-center">
+    &lt;div class="basic-data-left ">
+            &lt;p id="translate-total" class="mb-2">Total&lt;/p>
+        &lt;/div>
+    &lt;div class="basic-data-center ">
+        &lt;p class="mb-2">&lt;b>${total}&lt;/b>&lt;/p>
+    &lt;/div>
+    &lt;div class="basic-data-right ">
+        &lt;div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
+            aria-valuenow="25" aria-valuemin="0" aria-valuemax="600">
+        &lt;div class="progress-bar  ${progress_color_total}" style="width: ${total_percent}%">&lt;/div>
+        &lt;/div>
+    &lt;/div>
+&lt;/div>
+`;
+  return template
+}
+
+/**
+ * This function generates the layout for 3 Pokomons
+ * 
+ * @param {Number} id id of the respective card
+ */
+
+function createEvolutionTemplate3(id) {
+  for (let k = 0; k &lt; pokemon_main[id].evolution_chain.length; k++) {
+    const element = pokemon_main[id].evolution_chain[k];
+    var index = element.index;
+    for (let m = 0; m &lt; pokemon_main[index].designation.length; m++) {
+      const element = pokemon_main[index].designation[m];
+      if (element.language == language) {
+        let name = element.text;
+        if (k == 0) {
+          var name_stufe1 = name;
+        }
+        if (k == 1) {
+          var name_stufe2 = name;
+        }
+        if (k == 2) {
+          var name_stufe3 = name;
+        }
+      }
+    }
+  }
+  document.getElementById('evolution').innerHTML = `
+    &lt;h5 id="header_bas_stats" class="text-center mb-4" >Evolutiondsa Chain&lt;/h5>
+                &lt;div class="d-flex justify-content-between justify-content-center">
+                  &lt;div class="evolution-left d-flex justify-content-center flex-column">
+                    &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index},'${opinion}')"
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe1}&lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
+                  &lt;p class=" m-0">&lt;b>${pokemon_main[id].evolution_chain[1].level_up}&lt;/b>&lt;/p>
+                    &lt;svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
+                      viewBox="0 0 70 40">
+                      &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
+                      &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
+                    &lt;/svg>
+                    &lt;p class="text-center">&lt;b id="lvl-status1">Lvl&lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-right d-flex justify-content-center flex-column ">
+                    &lt;img  onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                  &lt;/div>
+                &lt;/div>
+                &lt;div span class="border-bottom mb-3">&lt;/div>
+                &lt;div class="d-flex justify-content-between justify-content-center">
+                  &lt;div class="evolution-left d-flex justify-content-center flex-column">
+                    &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
+                  &lt;p class=" m-0">&lt;b>${pokemon_main[id].evolution_chain[2].level_up}&lt;/b>&lt;/p>  
+                  &lt;svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
+                      viewBox="0 0 70 40">
+                      &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
+                      &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
+                    &lt;/svg>
+                    &lt;p class="text-center">&lt;b id="lvl-status2">Lvl &lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-right d-flex justify-content-center flex-column ">
+                    &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[2].index},'${opinion}')"
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[2].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe3}&lt;/b>&lt;/p>
+                  &lt;/div>
+                &lt;/div>
+                `;
+}
+
+/**
+ * This function generates the layout for 2 Pokomons
+ * 
+ * @param {Number} id id of the respective card
+ */
+
+function createEvolutionTemplate2(id) {
+  for (let k = 0; k &lt; pokemon_main[id].evolution_chain.length; k++) {
+    const element = pokemon_main[id].evolution_chain[k];
+    var index = element.index;
+    for (let m = 0; m &lt; pokemon_main[index].designation.length; m++) {
+      const element = pokemon_main[index].designation[m];
+      if (element.language == language) {
+        let name = element.text;
+        if (k == 0) {
+          var name_stufe1 = name;
+        }
+        if (k == 1) {
+          var name_stufe2 = name;
+        }
+      }
+    }
+  }
+  document.getElementById('evolution').innerHTML = `
+    &lt;h5 id="header_bas_stats" class="text-center mb-4" >Evolution Chain&lt;/h5>
+                &lt;div class="d-flex justify-content-between justify-content-center">
+                  &lt;div class="evolution-left d-flex justify-content-center flex-column">
+                    &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index},'${opinion}')"
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe1}&lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
+                  &lt;p class=" m-0">&lt;b>${pokemon_main[id].evolution_chain[1].level_up}&lt;/b>&lt;/p>
+                  &lt;svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
+                      viewBox="0 0 70 40">
+                      &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
+                      &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
+                    &lt;/svg>
+                    &lt;p class="text-center">&lt;b id="lvl-status1">Lvl &lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-right d-flex justify-content-center flex-column ">
+                    &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                  &lt;/div>
+                &lt;/div>
+                `;
+}
+
+/**
+ * This function generates an abort scenario if all 3 have not been loaded
+ * 
+ * @param {Number} id id of the respective card
+ */
+
+function createEvolutionTemplate3NotFound(id) {
+  var name_stufe1 = '-';
+  var name_stufe2 = '-';
+  var name_stufe3 = '-';
+  for (let k = 0; k &lt; pokemon_main[id].evolution_chain.length; k++) {
+    const element = pokemon_main[id].evolution_chain[k];
+    var index = element.index;
+    if (pokemon_main[index] != undefined) {
+      for (let m = 0; m &lt; pokemon_main[index].designation.length; m++) {
+        const element = pokemon_main[index].designation[m];
+        if (element.language == language) {
+          let name = element.text;
+          console.warn(name, k)
+          if (k == 0) {
+            name_stufe1 = name;
+          }
+          if (k == 1) {
+            name_stufe2 = name;
+          }
+          if (k == 2) {
+            name_stufe3 = name;
+          }
+        }
+      }
+    } else {
+      var not_found_index = '#' + (index + 1);
+    }
+  }
+  document.getElementById('evolution').innerHTML = `
+    &lt;h5 id="header_bas_stats" class="text-center mb-4" >Evolutiondsa123 Chain&lt;/h5>
+                &lt;div class="d-flex justify-content-between justify-content-center">
+                  &lt;div class="evolution-left d-flex justify-content-center flex-column" style="cursor: no-drop;">
+                    &lt;img 
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe1}&lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
+                  &lt;p class=" m-0">&lt;b>-&lt;/b>&lt;/p>
+                    &lt;svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
+                      viewBox="0 0 70 40">
+                      &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
+                      &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
+                    &lt;/svg>
+                    &lt;p class="text-center">&lt;b id="lvl-status1">Lvl&lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-right d-flex justify-content-center flex-column " style="cursor: no-drop;">
+                    &lt;img onklick="loadCard(${pokemon_main[id].card_number - 1})"
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                  &lt;/div>
+                &lt;/div>
+                &lt;div span class="border-bottom mb-3">&lt;/div>
+                &lt;div class="d-flex justify-content-between justify-content-center">
+                  &lt;div class="evolution-left d-flex justify-content-center flex-column" style="cursor: no-drop;">
+                    &lt;img
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
+                  &lt;p class=" m-0">&lt;b>-&lt;/b>&lt;/p>  
+                  &lt;svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
+                      viewBox="0 0 70 40">
+                      &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
+                      &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
+                    &lt;/svg>
+                    &lt;p class="text-center">&lt;b id="lvl-status2">Lvl &lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-right d-flex justify-content-center flex-column " style="cursor: no-drop;">
+                    &lt;img
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[2].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe3}&lt;/b>&lt;/p>
+                  &lt;/div>
+                &lt;/div>
+                &lt;div>
+                &lt;p id="header-bas-stats_not_found" class="text-center" >The following cards still need to be loaded&lt;/p>
+                &lt;h4 class="text-center mt-0">&lt;b>---> ${not_found_index} &lt;---&lt;/b>&lt;/h4
+                &lt;/div>
+                `;
+}
+
+/**
+ * This function generates an abort scenario if all 2 have not been loaded
+ * 
+ * @param {Number} id id of the respective card
+ */
+
+function createEvolutionTemplate2NotFound(id) {
+  for (let k = 0; k &lt; pokemon_main[id].evolution_chain.length; k++) {
+    const element = pokemon_main[id].evolution_chain[k];
+    var index = element.index;
+    if (pokemon_main[index] != undefined) {
+      var name_stufe1 = '-';
+      var name_stufe2 = '-';
+      for (let m = 0; m &lt; pokemon_main[index].designation.length; m++) {
+        const element = pokemon_main[index].designation[m];
+        if (element.language == language) {
+          let name = element.text;
+          if (k == 0) {
+            name_stufe1 = name;
+          }
+          if (k == 1) {
+            name_stufe2 = name;
+          }
+        }
+      }
+    }
+    var not_found_index = index + 1;
+  }
+  document.getElementById('evolution').innerHTML = `
+    &lt;h5 id="header_bas_stats" class="text-center mb-4" >Evolution Chain&lt;/h5>
+                &lt;div class="d-flex justify-content-between justify-content-center">
+                  &lt;div class="evolution-left d-flex justify-content-center flex-column" style="cursor: no-drop;">
+                    &lt;img
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe1}&lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
+                  &lt;p class=" m-0">&lt;b>-&lt;/b>&lt;/p>
+                  &lt;svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
+                      viewBox="0 0 70 40">
+                      &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
+                      &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
+                    &lt;/svg>
+                    &lt;p class="text-center">&lt;b id="lvl-status1">Lvl &lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;div class="evolution-right d-flex justify-content-center flex-column " style="cursor: no-drop;">
+                    &lt;img
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
+                      alt="">
+                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                  &lt;/div>
+                  &lt;p id="header-bas-stats_not_found" class="text-center" >The following cards still need to be loaded&lt;/p>
+                  &lt;h4 class="text-center mt-0">&lt;b>---> ${not_found_index} &lt;---&lt;/b>&lt;/h4
+                &lt;/div>
+                `;
+}
+
+/**
+ * 
+This function generates the left arrow for each card
+ * 
+ * @returns arrow
+ */
+
+function createSmallBottomLeft() {
+  let a = `  &lt;svg class="card-hover" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
+    viewBox="0 0 24 24">
+    &lt;g transform="scale(-1, 1) translate(-24, 0)">
+      &lt;path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
+    &lt;/g>
+  &lt;/svg>`;
+  return a;
+}
+
+/**
+ * 
+This function generates the right arrow for each card
+ * 
+ * @returns arrow
+ */
+
+function createSmallBottomRight() {
+  let a = `  &lt;svg class="card-hover" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg" width="100"
+    height="100" viewBox="0 0 24 24">
+    &lt;path fill="black" d="M14 12l-6-6 1.41-1.41L16.83 12l-7.42 7.42L8 18z" />
+  &lt;/svg>`;
+  return a;
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#changeLanguages">changeLanguages</a></li><li><a href="global.html#createEvolutionTemplate2">createEvolutionTemplate2</a></li><li><a href="global.html#createEvolutionTemplate2NotFound">createEvolutionTemplate2NotFound</a></li><li><a href="global.html#createEvolutionTemplate3">createEvolutionTemplate3</a></li><li><a href="global.html#createEvolutionTemplate3NotFound">createEvolutionTemplate3NotFound</a></li><li><a href="global.html#createSmallBottomLeft">createSmallBottomLeft</a></li><li><a href="global.html#createSmallBottomRight">createSmallBottomRight</a></li><li><a href="global.html#createSmallCard">createSmallCard</a></li><li><a href="global.html#createStatsTabelEnd">createStatsTabelEnd</a></li><li><a href="global.html#createStatsTabelSingel">createStatsTabelSingel</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Oct 01 2023 22:17:40 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

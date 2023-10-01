@@ -1,6 +1,12 @@
 body {
     background-color: #F2F2F2;
     margin: 0;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
+}
+
+.span{
+    font-weight: 300;
 }
 
 .navbar-header {
@@ -9,7 +15,10 @@ body {
     z-index: 5;
     width: 100%;
 }
-
+.form-control {
+    border: 0;
+    box-shadow: none;
+}
 .bg {
     background-color: white;
 }
