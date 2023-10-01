@@ -13,16 +13,12 @@ async function loadBlock() {
         leadPokemonHabitat(card_number - 1);
         loadPokemonEvolutionChain(card_number - 1);
         createSmallCard();
+        loadProgressbar();
         loadLikePokemon(card_number - 1);
         loadBlock();
-        if (card_number <= loading_counter + 1) {
-            loadingScreenRemove();
-            document.getElementById('load-card-more').disabled = false;
-        } else {
-            loadProgressbar();
-        }
-
+        
     } else {
+        //loadingScreenRemove();
         console.log('STOP! Es wurden ' + card_number + ' Karten geladen.');
         console.log('Pokemon Main= ', pokemon_main);
         document.getElementById('load-card-more').disabled = false;
@@ -220,14 +216,14 @@ function sortLanguageTyps(b, i) {
 }
 
 function loadProgressbar() {
-    if (card_number == loading_counter + 1) {
+    if (card_number >= 10) {
         loadingScreenRemove();
     } else {
-        document.getElementById('body').classList.add('fixed');
-        let percent = card_number / loading_counter;
-        percent = Math.round(percent * 100);
-        document.getElementById('progress-status').style.width = `${percent}%`;
-        document.getElementById('progress-status').innerHTML = `${percent} %`;
+    document.getElementById('body').classList.add('fixed');
+    let percent = card_number / loading_counter;
+    percent = Math.round(percent * 100);
+    document.getElementById('progress-status').style.width = `${percent}%`;
+    document.getElementById('progress-status').innerHTML = `${percent} %`;
     }
 }
 
@@ -689,6 +685,7 @@ function loadLikeList() {
 
 function loadCardMore(i) {
     loading_counter = loading_counter + 10;
+    document.getElementById('load-card-more').disabled = true;
     loadBlock();
     console.log(i);
 }
