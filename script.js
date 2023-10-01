@@ -1,6 +1,7 @@
 function init() {
     loadBlock();
     scrollToTop();
+    
 }
 
 async function loadBlock() {
@@ -20,6 +21,7 @@ async function loadBlock() {
         console.log('STOP! Es wurden ' + card_number + ' Karten geladen.');
         console.log('Pokemon Main= ', pokemon_main);
         loadOtherLanguages(language);
+        
     }
 }
 
@@ -214,6 +216,7 @@ function sortLanguageTyps(b, i) {
 function loadProgressbar() {
     if (card_number == loading_counter + 1) {
         loadingScreenRemove();
+        document.getElementById('load-card-more').disabled = false;
     } else {
         document.getElementById('body').classList.add('fixed');
         let percent = card_number / loading_counter;

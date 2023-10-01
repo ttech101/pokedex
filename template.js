@@ -177,7 +177,7 @@ function createStatsTabelEnd(total, progress_color_total, total_percent) {
     <div class="basic-data-right ">
         <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
             aria-valuenow="25" aria-valuemin="0" aria-valuemax="600">
-        <div class="progress-bar  ${progress_color_total}" style="width: ${total_percent}px"></div>
+        <div class="progress-bar  ${progress_color_total}" style="width: ${total_percent}%"></div>
         </div>
     </div>
 </div>
