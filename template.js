@@ -135,7 +135,7 @@ function createStatsTabelSingel(name, base_stat, progress_color) {
             <p id="translate-${name}" class="mb-2">${name_small}</p>
         </div>
     <div class="basic-data-center ">
-        <p class="mb-2"><b>${base_stat}</b></p>
+        <p class="mb-2">${base_stat}</p>
     </div>
     <div class="basic-data-right ">
         <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
@@ -163,7 +163,7 @@ function createStatsTabelEnd(total, progress_color_total, total_percent) {
             <p id="translate-total" class="mb-2">Total</p>
         </div>
     <div class="basic-data-center ">
-        <p class="mb-2"><b>${total}</b></p>
+        <p class="mb-2">${total}</p>
     </div>
     <div class="basic-data-right ">
         <div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
@@ -209,22 +209,22 @@ function createEvolutionTemplate3(id) {
                     <img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe1}</b></p>
+                    <p class="text-center">${name_stufe1}</p>
                   </div>
                   <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
-                  <p class=" m-0"><b>${pokemon_main[id].evolution_chain[1].level_up}</b></p>
+                  <p class=" m-0">${pokemon_main[id].evolution_chain[1].level_up}</p>
                     <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
                       viewBox="0 0 70 40">
                       <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     </svg>
-                    <p class="text-center"><b id="lvl-status1">Lvl</b></p>
+                    <p class="text-center" id="lvl-status1">>Lvl</p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column ">
                     <img  onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe2}</b></p>
+                    <p class="text-center">${name_stufe2}</p>
                   </div>
                 </div>
                 <div span class="border-bottom mb-3"></div>
@@ -233,22 +233,22 @@ function createEvolutionTemplate3(id) {
                     <img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe2}</b></p>
+                    <p class="text-center">${name_stufe2}</p>
                   </div>
                   <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
-                  <p class=" m-0"><b>${pokemon_main[id].evolution_chain[2].level_up}</b></p>  
+                  <p class=" m-0">${pokemon_main[id].evolution_chain[2].level_up}</p>  
                   <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
                       viewBox="0 0 70 40">
                       <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     </svg>
-                    <p class="text-center"><b id="lvl-status2">Lvl </b></p>
+                    <p class="text-center" id="lvl-status2">Lvl</p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column ">
                     <img onclick="loadCard(${pokemon_main[id].evolution_chain[2].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[2].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe3}</b></p>
+                    <p class="text-center">${name_stufe3}</p>
                   </div>
                 </div>
                 `;
@@ -284,22 +284,22 @@ function createEvolutionTemplate2(id) {
                     <img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe1}</b></p>
+                    <p class="text-center">${name_stufe1}</p>
                   </div>
                   <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
-                  <p class=" m-0"><b>${pokemon_main[id].evolution_chain[1].level_up}</b></p>
+                  <p class=" m-0">${pokemon_main[id].evolution_chain[1].level_up}</p>
                   <svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
                       viewBox="0 0 70 40">
                       <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     </svg>
-                    <p class="text-center"><b id="lvl-status1">Lvl </b></p>
+                    <p class="text-center" id="lvl-status1">Lvl</p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column ">
                     <img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe2}</b></p>
+                    <p class="text-center">${name_stufe2}</p>
                   </div>
                 </div>
                 `;
@@ -323,7 +323,6 @@ function createEvolutionTemplate3NotFound(id) {
         const element = pokemon_main[index].designation[m];
         if (element.language == language) {
           let name = element.text;
-          console.warn(name, k)
           if (k == 0) {
             name_stufe1 = name;
           }
@@ -346,7 +345,7 @@ function createEvolutionTemplate3NotFound(id) {
                     <img 
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe1}</b></p>
+                    <p class="text-center">${name_stufe1}</p>
                   </div>
                   <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
                   <p class=" m-0"><b>-</b></p>
@@ -355,13 +354,13 @@ function createEvolutionTemplate3NotFound(id) {
                       <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     </svg>
-                    <p class="text-center"><b id="lvl-status1">Lvl</b></p>
+                    <p class="text-center" id="lvl-status1">Lvl</p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column " style="cursor: no-drop;">
                     <img onklick="loadCard(${pokemon_main[id].card_number - 1})"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe2}</b></p>
+                    <p class="text-center">${name_stufe2}</p>
                   </div>
                 </div>
                 <div span class="border-bottom mb-3"></div>
@@ -370,7 +369,7 @@ function createEvolutionTemplate3NotFound(id) {
                     <img
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe2}</b></p>
+                    <p class="text-center">${name_stufe2}</p>
                   </div>
                   <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
                   <p class=" m-0"><b>-</b></p>  
@@ -379,18 +378,18 @@ function createEvolutionTemplate3NotFound(id) {
                       <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     </svg>
-                    <p class="text-center"><b id="lvl-status2">Lvl </b></p>
+                    <p class="text-center" id="lvl-status2">Lvl</p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column " style="cursor: no-drop;">
                     <img
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[2].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe3}</b></p>
+                    <p class="text-center">${name_stufe3}</p>
                   </div>
                 </div>
                 <div>
                 <p id="header-bas-stats_not_found" class="text-center" >The following cards still need to be loaded</p>
-                <h4 class="text-center mt-0"><b>---> ${not_found_index} <---</b></h4
+                <h4 class="text-center mt-0">---> ${not_found_index} <---</h4
                 </div>
                 `;
 }
@@ -430,7 +429,7 @@ function createEvolutionTemplate2NotFound(id) {
                     <img
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe1}</b></p>
+                    <p class="text-center">${name_stufe1}</p>
                   </div>
                   <div class="evolution-center d-flex justify-content-center align-items-center flex-column">
                   <p class=" m-0"><b>-</b></p>
@@ -439,16 +438,16 @@ function createEvolutionTemplate2NotFound(id) {
                       <line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       <polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     </svg>
-                    <p class="text-center"><b id="lvl-status1">Lvl </b></p>
+                    <p class="text-center" id="lvl-status1">Lvl </p>
                   </div>
                   <div class="evolution-right d-flex justify-content-center flex-column " style="cursor: no-drop;">
                     <img
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    <p class="text-center"><b>${name_stufe2}</b></p>
+                    <p class="text-center">${name_stufe2}</p>
                     </div></div>
                   <p id="header-bas-stats_not_found" class="text-center" >The following cards still need to be loaded</p>
-                  <h4 class="text-center mt-0"><b>---> ${not_found_index} <---</b></h4
+                  <h4 class="text-center mt-0">---> ${not_found_index} <---</h4
                 </div></div>
                 `;
 }

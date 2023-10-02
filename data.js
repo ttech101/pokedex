@@ -6,7 +6,7 @@ let id = "";
 let pokemon_main = [];
 let typs = [];
 let like_list = [];
-var opinion ="";
+var opinion ="about";
 
 let language_other_data = [
     {

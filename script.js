@@ -225,7 +225,9 @@ function sortLanguageTyps(b, i) {
 
 function loadProgressbar() {
     if (card_number >= 10) {
-        loadingScreenRemove();
+        if (card_number <= 11) {
+            loadingScreenRemove();
+        }
     } else {
         document.getElementById('body').classList.add('fixed');
         let percent = card_number / loading_counter;
@@ -353,7 +355,7 @@ function loadCard(i, layout) {
     loadStats(i);
     loadCardOption(layout)
     id = i,
-    loadCardElements(id);
+        loadCardElements(id);
     cardTypsSmall(id, language)
     document.getElementById('card-id').innerHTML = pokemonId(i + 1);
     loadBottomSmallCard(id);
@@ -489,8 +491,8 @@ function loadStatsAbout(i) {
     document.getElementById('card-height').innerHTML = `${height}´´ (${(pokemon_main[i].height / 10).toFixed(2)} cm)`;
     document.getElementById('card-weight').innerHTML = `${weight} lbs (${(pokemon_main[i].weight / 10).toFixed(1)} kg)`;
     document.getElementById('card-species').innerHTML = translator3Instance([i], ['genera'], language);
-    document.getElementById('card-female').innerHTML = Number(100 - ((pokemon_main[i].gender_rate / 5) * 100));
-    document.getElementById('card-male').innerHTML = Number((pokemon_main[i].gender_rate / 5) * 100);
+    document.getElementById('card-female').innerHTML = Number(100 - ((pokemon_main[i].gender_rate / 10) * 100));
+    document.getElementById('card-male').innerHTML = Number((pokemon_main[i].gender_rate / 10) * 100);
     createEggGroup(i);
     createAbilities(i);
     createHabitat(i);
@@ -503,7 +505,7 @@ function createEggGroup(id) {
         let group = translator4Instance(id, ['egg_groups'], language, j);
         if (group !== undefined) {
             group = group.replace("1", "");
-            document.getElementById('card-egg_groups').innerHTML += `<b>${group} </b>`;
+            document.getElementById('card-egg_groups').innerHTML += `${group}`;
         } else {
             document.getElementById('card-egg_groups').innerHTML = notFoundTranslate();
         }
@@ -516,7 +518,7 @@ function createAbilities(id) {
         const element = pokemon_main[id]['abilities'][j];
         let group = translator4Instance(id, ['abilities'], language, j);
         if (group !== undefined) {
-            document.getElementById('card-abilities').innerHTML += `<b>${group} </b>`;
+            document.getElementById('card-abilities').innerHTML += `${group} `;
         } else {
             document.getElementById('card-abilities').innerHTML = notFoundTranslate();
         }
@@ -602,7 +604,7 @@ function loadEvolutionStats(i) {
         }
     }
     if (pokemon_main[i].evolution_chain.length == 2) {
-        if (pokemon_main[i].evolution_chain[0].index <= number && pokemon_main[i].evolution_chain[1].index >= number) {
+        if (pokemon_main[i].evolution_chain[0].index <= number && pokemon_main[i].evolution_chain[1].index <= number) {
             createEvolutionTemplate2(i);
         } else {
             createEvolutionTemplate2NotFound(i);
@@ -642,7 +644,6 @@ function loadBottomSmallCardRight() {
 }
 
 function notFoundTranslate() {
-
     for (let i = 0; i < language_other_data.length; i++) {
         const element = language_other_data[i];
         if (element.language == language) {

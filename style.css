@@ -32,7 +32,7 @@ body {
 }
 
 .green-animation {
-    background: linear-gradient(210deg, #FFD700, #51D1B5, #FFD700);
+    background: linear-gradient(210deg, #FFD700, #40a892, #FFD700);
     background-size: 280% 180%;
     animation: gradient-animation 4s ease infinite;
 }
@@ -90,7 +90,7 @@ body {
 }
 
 .brown-animation {
-    background: linear-gradient(210deg, #FFD700, #cc8e3e, #FFD700);
+    background: linear-gradient(210deg, #FFD700, #6b4412, #FFD700);
     background-size: 280% 180%;
     animation: gradient-animation 4s ease infinite;
 }
@@ -105,7 +105,7 @@ body {
 }
 
 .yellow-animation {
-    background: linear-gradient(210deg, #FFD700, #bec73e, #FFD700);
+    background: linear-gradient(210deg, #FFD700, #343612, #FFD700);
     background-size: 280% 180%;
     animation: gradient-animation 4s ease infinite;
 }
@@ -368,7 +368,7 @@ body {
 }
 
 .basic-data-left {
-    width: 25%;
+    width: 40%;
 }
 
 .basic-data-left p {
@@ -386,11 +386,11 @@ body {
 }
 
 .basic-data-center {
-    width: 20%;
+    width: 15%;
 }
 
 .basic-data-right {
-    width: 55%;
+    width: 45%;
 }
 
 .evolution-left {
