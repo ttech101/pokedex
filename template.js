@@ -18,7 +18,6 @@ function createSmallCard() {
                     <div class="card-body ">
                         <h5 class="card-title" id="name-small-${id_number}">${designation[i]['text']}</h5>
                         <div id="typs-small-${id_number}" class="typ-small">
-                     
                         </div>
                     </div>
                     <div>

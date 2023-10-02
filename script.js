@@ -14,8 +14,8 @@ async function loadBlock() {
         pushToLocalCard();
         loadDataSecondary(card_number - 1);
         createSmallCard();
-        loadProgressbar();
         loadLikePokemon(card_number - 1);
+        loadProgressbar();
         loadBlock();
     } else {
         BlockEnd();
@@ -30,11 +30,9 @@ function BlockEnd() {
 }
 
 async function loadDataPrimar(card_number) {
-    let url_start = loadPokemonMain(card_number);
-    let urls = await url_start;
-    let a1 = loadPokemonSpecies(urls.species.url);
-    let a2 = loadPokemonTyps(urls.types);
-    await Promise.all([a1, a2]);
+    let urls = await loadPokemonMain(card_number);
+    await loadPokemonSpecies(urls.species.url),
+    await loadPokemonTyps(urls.types);
 }
 
 async function loadDataSecondary(id) {
@@ -43,6 +41,7 @@ async function loadDataSecondary(id) {
     let a3 = leadPokemonHabitat(id);
     let a4 = loadPokemonEvolutionChain(id);
     await Promise.all([a1, a2, a3, a4]);
+
 }
 
 async function loadPokemonMain(card_number) {
