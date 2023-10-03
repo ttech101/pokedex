@@ -1,11 +1,11 @@
 body {
-    background-color: #cac8c8;
+    background-color: #F8F9FA;
     margin: 0;
     font-family: 'Kanit', sans-serif;
     font-weight: 400;
 }
 
-.span{
+.span {
     font-weight: 300;
 }
 
@@ -15,16 +15,26 @@ body {
     z-index: 5;
     width: 100%;
 }
+
 .form-control {
     border: 0;
-    
+
 }
+
 .form-control:focus {
     border-color: #6C757D;
     border: 5px;
     box-shadow: none;
 }
 
+.btn-close:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 0;
+}
+
+.btn-close:focus {
+    box-shadow: none;
+}
 
 .bg {
     background-color: white;
@@ -404,9 +414,10 @@ body {
     width: 30%;
 }
 
-.evolution-left{
+.evolution-left {
     cursor: pointer;
 }
+
 .evolution-center {
     width: 40%;
 }
@@ -415,9 +426,9 @@ body {
     width: 30%;
 }
 
-.evolution-right:hover{
+.evolution-right:hover {
     cursor: pointer;
-    
+
 }
 
 .evolution img {
@@ -439,8 +450,16 @@ body {
     border-radius: 50px;
 }
 
+.card-hover-like img {
+    padding: 3px;
+    height: 50px;
+}
+
 .card-hover-like:hover {
     cursor: pointer;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
 
 .navbar-footer {
@@ -456,7 +475,8 @@ body {
     width: 20rem;
 
 }
-.card-screen{
+
+.card-screen {
     margin-top: 70px;
 }
 
@@ -517,27 +537,27 @@ body {
     }
 }
 
-  /* Firefox */
-  * {
+/* Firefox */
+* {
     scrollbar-width: auto;
     scrollbar-color: #6C757D #ffffff;
-  }
+}
 
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
     width: 16px;
-  }
+}
 
-  *::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
     background: #ffffff;
-  }
+}
 
-  *::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     background-color: #6C757D;
     border-radius: 10px;
     border: 3px solid #ffffff;
-  }
+}
 
-.menu:hover{
+.menu:hover {
     cursor: pointer;
 }
