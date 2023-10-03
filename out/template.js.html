@@ -46,7 +46,6 @@ function createSmallCard() {
                     &lt;div class="card-body ">
                         &lt;h5 class="card-title" id="name-small-${id_number}">${designation[i]['text']}&lt;/h5>
                         &lt;div id="typs-small-${id_number}" class="typ-small">
-                     
                         &lt;/div>
                     &lt;/div>
                     &lt;div>
@@ -70,7 +69,7 @@ function createSmallCard() {
       const element = typ[l];
       if (element.language == language) {
         document.getElementById(`typs-small-${id_number}`).innerHTML += `
-            &lt;span class=" mb-2 badge rounded-pill shadow ${bg_color}-typs">${element.text}&lt;/span>
+            &lt;span class=" mb-2 badge rounded-pill span shadow  ${bg_color}-typs">${element.text}&lt;/span>
             `;
       }
     }
@@ -87,28 +86,30 @@ function changeLanguages(l) {
   for (let h = 0; h &lt; language_other_data.length; h++) {
     const element = language_other_data[h];
     if (element.language == l) {
+      document.getElementById('search_input').placeholder = `${element.search}`;
+      document.getElementById('search_input_bottom').placeholder = `${element.search}`;
       document.getElementById('load-card-more').innerHTML = `${element['10_cards']}`;
       document.getElementById('country').innerHTML = `
             &lt;img  class="menu-flag justify-content-between align-items-center" src="./img/icon/${element.language}.png" alt="">${element.speak}`;
       document.getElementById('brand').innerHTML = `${element.brand}`;
       document.getElementById('flagg-list').innerHTML = `
             &lt;li onclick="loadOtherLanguages('de')">&lt;a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.de}&lt;img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.de}&lt;img
                   src="./img/icon/de.png" alt="">&lt;/a>&lt;/li>
             &lt;li onclick="loadOtherLanguages('en')">&lt;a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.en}&lt;img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.en}&lt;img
                   src="./img/icon/en.png" alt="">&lt;/a>&lt;/li>
             &lt;li onclick="loadOtherLanguages('fr')">&lt;a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.fr}&lt;img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.fr}&lt;img
                   src="./img/icon/fr.png" alt="">&lt;/a>&lt;/li>
             &lt;li onclick="loadOtherLanguages('es')">&lt;a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.es}&lt;img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.es}&lt;img
                   src="./img/icon/es.png" alt="">&lt;/a>&lt;/li>
             &lt;li onclick="loadOtherLanguages('it')">&lt;a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.it}&lt;img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.it}&lt;img
                   src="./img/icon/it.png" alt="">&lt;/a>&lt;/li>
             &lt;li onclick="loadOtherLanguages('ja')">&lt;a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.ja}&lt;img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.ja}&lt;img
                   src="./img/icon/ja.png" alt="">&lt;/a>&lt;/li>
                   `;
       document.getElementById('search-not-found').innerHTML = `
@@ -137,7 +138,7 @@ function changeLanguages(l) {
         const element = typs_translate[m];
         if (element.language == l) {
           document.getElementById(`typs-small-${card_number}`).innerHTML += `
-                &lt;span class=" mb-2 badge rounded-pill shadow ${bg_color}-typs">${element.text}&lt;/span>
+                &lt;span class=" mb-2 badge rounded-pill span shadow ${bg_color}-typs">${element.text}&lt;/span>
                 `;
         }
       }
@@ -163,7 +164,7 @@ function createStatsTabelSingel(name, base_stat, progress_color) {
             &lt;p id="translate-${name}" class="mb-2">${name_small}&lt;/p>
         &lt;/div>
     &lt;div class="basic-data-center ">
-        &lt;p class="mb-2">&lt;b>${base_stat}&lt;/b>&lt;/p>
+        &lt;p class="mb-2">${base_stat}&lt;/p>
     &lt;/div>
     &lt;div class="basic-data-right ">
         &lt;div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
@@ -191,7 +192,7 @@ function createStatsTabelEnd(total, progress_color_total, total_percent) {
             &lt;p id="translate-total" class="mb-2">Total&lt;/p>
         &lt;/div>
     &lt;div class="basic-data-center ">
-        &lt;p class="mb-2">&lt;b>${total}&lt;/b>&lt;/p>
+        &lt;p class="mb-2">${total}&lt;/p>
     &lt;/div>
     &lt;div class="basic-data-right ">
         &lt;div class="progress mb-2" style="height: 0.5rem;" role="progressbar" aria-label="Success example"
@@ -237,22 +238,22 @@ function createEvolutionTemplate3(id) {
                     &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe1}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe1}&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
-                  &lt;p class=" m-0">&lt;b>${pokemon_main[id].evolution_chain[1].level_up}&lt;/b>&lt;/p>
+                  &lt;p class=" m-0">${pokemon_main[id].evolution_chain[1].level_up}&lt;/p>
                     &lt;svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
                       viewBox="0 0 70 40">
                       &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     &lt;/svg>
-                    &lt;p class="text-center">&lt;b id="lvl-status1">Lvl&lt;/b>&lt;/p>
+                    &lt;p class="text-center" id="lvl-status1">>Lvl&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-right d-flex justify-content-center flex-column ">
                     &lt;img  onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe2}&lt;/p>
                   &lt;/div>
                 &lt;/div>
                 &lt;div span class="border-bottom mb-3">&lt;/div>
@@ -261,22 +262,22 @@ function createEvolutionTemplate3(id) {
                     &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe2}&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
-                  &lt;p class=" m-0">&lt;b>${pokemon_main[id].evolution_chain[2].level_up}&lt;/b>&lt;/p>  
+                  &lt;p class=" m-0">${pokemon_main[id].evolution_chain[2].level_up}&lt;/p>  
                   &lt;svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
                       viewBox="0 0 70 40">
                       &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     &lt;/svg>
-                    &lt;p class="text-center">&lt;b id="lvl-status2">Lvl &lt;/b>&lt;/p>
+                    &lt;p class="text-center" id="lvl-status2">Lvl&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-right d-flex justify-content-center flex-column ">
                     &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[2].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[2].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe3}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe3}&lt;/p>
                   &lt;/div>
                 &lt;/div>
                 `;
@@ -312,22 +313,22 @@ function createEvolutionTemplate2(id) {
                     &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[0].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe1}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe1}&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
-                  &lt;p class=" m-0">&lt;b>${pokemon_main[id].evolution_chain[1].level_up}&lt;/b>&lt;/p>
+                  &lt;p class=" m-0">${pokemon_main[id].evolution_chain[1].level_up}&lt;/p>
                   &lt;svg class="ps-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="70" height="40"
                       viewBox="0 0 70 40">
                       &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     &lt;/svg>
-                    &lt;p class="text-center">&lt;b id="lvl-status1">Lvl &lt;/b>&lt;/p>
+                    &lt;p class="text-center" id="lvl-status1">Lvl&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-right d-flex justify-content-center flex-column ">
                     &lt;img onclick="loadCard(${pokemon_main[id].evolution_chain[1].index},'${opinion}')"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe2}&lt;/p>
                   &lt;/div>
                 &lt;/div>
                 `;
@@ -351,7 +352,6 @@ function createEvolutionTemplate3NotFound(id) {
         const element = pokemon_main[index].designation[m];
         if (element.language == language) {
           let name = element.text;
-          console.warn(name, k)
           if (k == 0) {
             name_stufe1 = name;
           }
@@ -374,7 +374,7 @@ function createEvolutionTemplate3NotFound(id) {
                     &lt;img 
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe1}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe1}&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
                   &lt;p class=" m-0">&lt;b>-&lt;/b>&lt;/p>
@@ -383,13 +383,13 @@ function createEvolutionTemplate3NotFound(id) {
                       &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     &lt;/svg>
-                    &lt;p class="text-center">&lt;b id="lvl-status1">Lvl&lt;/b>&lt;/p>
+                    &lt;p class="text-center" id="lvl-status1">Lvl&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-right d-flex justify-content-center flex-column " style="cursor: no-drop;">
                     &lt;img onklick="loadCard(${pokemon_main[id].card_number - 1})"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe2}&lt;/p>
                   &lt;/div>
                 &lt;/div>
                 &lt;div span class="border-bottom mb-3">&lt;/div>
@@ -398,7 +398,7 @@ function createEvolutionTemplate3NotFound(id) {
                     &lt;img
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe2}&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
                   &lt;p class=" m-0">&lt;b>-&lt;/b>&lt;/p>  
@@ -407,18 +407,18 @@ function createEvolutionTemplate3NotFound(id) {
                       &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     &lt;/svg>
-                    &lt;p class="text-center">&lt;b id="lvl-status2">Lvl &lt;/b>&lt;/p>
+                    &lt;p class="text-center" id="lvl-status2">Lvl&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-right d-flex justify-content-center flex-column " style="cursor: no-drop;">
                     &lt;img
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[2].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe3}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe3}&lt;/p>
                   &lt;/div>
                 &lt;/div>
                 &lt;div>
                 &lt;p id="header-bas-stats_not_found" class="text-center" >The following cards still need to be loaded&lt;/p>
-                &lt;h4 class="text-center mt-0">&lt;b>---> ${not_found_index} &lt;---&lt;/b>&lt;/h4
+                &lt;h4 class="text-center mt-0">---> ${not_found_index} &lt;---&lt;/h4
                 &lt;/div>
                 `;
 }
@@ -458,7 +458,7 @@ function createEvolutionTemplate2NotFound(id) {
                     &lt;img
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[0].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe1}&lt;/b>&lt;/p>
+                    &lt;p class="text-center">${name_stufe1}&lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-center d-flex justify-content-center align-items-center flex-column">
                   &lt;p class=" m-0">&lt;b>-&lt;/b>&lt;/p>
@@ -467,17 +467,17 @@ function createEvolutionTemplate2NotFound(id) {
                       &lt;line x1="0" y1="20" x2="60" y2="20" stroke="rgba(0, 0, 0, 0.2)" stroke-width="2" />
                       &lt;polygon points="60,15 70,20 60,25" fill="rgba(0, 0, 0, 0.2)" />
                     &lt;/svg>
-                    &lt;p class="text-center">&lt;b id="lvl-status1">Lvl &lt;/b>&lt;/p>
+                    &lt;p class="text-center" id="lvl-status1">Lvl &lt;/p>
                   &lt;/div>
                   &lt;div class="evolution-right d-flex justify-content-center flex-column " style="cursor: no-drop;">
                     &lt;img
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon_main[id].evolution_chain[1].index + 1}.svg"
                       alt="">
-                    &lt;p class="text-center">&lt;b>${name_stufe2}&lt;/b>&lt;/p>
-                  &lt;/div>
+                    &lt;p class="text-center">${name_stufe2}&lt;/p>
+                    &lt;/div>&lt;/div>
                   &lt;p id="header-bas-stats_not_found" class="text-center" >The following cards still need to be loaded&lt;/p>
-                  &lt;h4 class="text-center mt-0">&lt;b>---> ${not_found_index} &lt;---&lt;/b>&lt;/h4
-                &lt;/div>
+                  &lt;h4 class="text-center mt-0">---> ${not_found_index} &lt;---&lt;/h4
+                &lt;/div>&lt;/div>
                 `;
 }
 
@@ -521,13 +521,13 @@ function createSmallBottomRight() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#changeLanguages">changeLanguages</a></li><li><a href="global.html#createEvolutionTemplate2">createEvolutionTemplate2</a></li><li><a href="global.html#createEvolutionTemplate2NotFound">createEvolutionTemplate2NotFound</a></li><li><a href="global.html#createEvolutionTemplate3">createEvolutionTemplate3</a></li><li><a href="global.html#createEvolutionTemplate3NotFound">createEvolutionTemplate3NotFound</a></li><li><a href="global.html#createSmallBottomLeft">createSmallBottomLeft</a></li><li><a href="global.html#createSmallBottomRight">createSmallBottomRight</a></li><li><a href="global.html#createSmallCard">createSmallCard</a></li><li><a href="global.html#createStatsTabelEnd">createStatsTabelEnd</a></li><li><a href="global.html#createStatsTabelSingel">createStatsTabelSingel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#BlockEnd">BlockEnd</a></li><li><a href="global.html#cardTypsSmall">cardTypsSmall</a></li><li><a href="global.html#changeAbout">changeAbout</a></li><li><a href="global.html#changeBaseStats">changeBaseStats</a></li><li><a href="global.html#changeBaseStatsLoad">changeBaseStatsLoad</a></li><li><a href="global.html#changeEvolution">changeEvolution</a></li><li><a href="global.html#changeLanguages">changeLanguages</a></li><li><a href="global.html#changeOption">changeOption</a></li><li><a href="global.html#createAbilities">createAbilities</a></li><li><a href="global.html#createEggGroup">createEggGroup</a></li><li><a href="global.html#createEvolutionTemplate2">createEvolutionTemplate2</a></li><li><a href="global.html#createEvolutionTemplate2NotFound">createEvolutionTemplate2NotFound</a></li><li><a href="global.html#createEvolutionTemplate3">createEvolutionTemplate3</a></li><li><a href="global.html#createEvolutionTemplate3NotFound">createEvolutionTemplate3NotFound</a></li><li><a href="global.html#createFacts">createFacts</a></li><li><a href="global.html#createHabitat">createHabitat</a></li><li><a href="global.html#createProgressBarEnd">createProgressBarEnd</a></li><li><a href="global.html#createSmallBottomLeft">createSmallBottomLeft</a></li><li><a href="global.html#createSmallBottomRight">createSmallBottomRight</a></li><li><a href="global.html#createSmallCard">createSmallCard</a></li><li><a href="global.html#createStats">createStats</a></li><li><a href="global.html#createStatsTabelEnd">createStatsTabelEnd</a></li><li><a href="global.html#createStatsTabelSingel">createStatsTabelSingel</a></li><li><a href="global.html#disableSearchBottom">disableSearchBottom</a></li><li><a href="global.html#enableSearchBottom">enableSearchBottom</a></li><li><a href="global.html#heartBlack">heartBlack</a></li><li><a href="global.html#heartRed">heartRed</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#leadPokemonHabitat">leadPokemonHabitat</a></li><li><a href="global.html#likePokemon">likePokemon</a></li><li><a href="global.html#loadBlock">loadBlock</a></li><li><a href="global.html#loadBottomSmallCard">loadBottomSmallCard</a></li><li><a href="global.html#loadBottomSmallCardLeft">loadBottomSmallCardLeft</a></li><li><a href="global.html#loadBottomSmallCardRight">loadBottomSmallCardRight</a></li><li><a href="global.html#loadCard">loadCard</a></li><li><a href="global.html#loadCardElements">loadCardElements</a></li><li><a href="global.html#loadCardMore">loadCardMore</a></li><li><a href="global.html#loadCardOption">loadCardOption</a></li><li><a href="global.html#loadCardOptionAbout">loadCardOptionAbout</a></li><li><a href="global.html#loadCardOptionBaseStats">loadCardOptionBaseStats</a></li><li><a href="global.html#loadCardOptionEvolution">loadCardOptionEvolution</a></li><li><a href="global.html#loadDataPrimar">loadDataPrimar</a></li><li><a href="global.html#loadDataSecondary">loadDataSecondary</a></li><li><a href="global.html#loadEvolutionStats">loadEvolutionStats</a></li><li><a href="global.html#loadLikeList">loadLikeList</a></li><li><a href="global.html#loadLikePokemon">loadLikePokemon</a></li><li><a href="global.html#loadOtherLanguages">loadOtherLanguages</a></li><li><a href="global.html#loadPokemonAbilities">loadPokemonAbilities</a></li><li><a href="global.html#loadPokemonEgg_groups">loadPokemonEgg_groups</a></li><li><a href="global.html#loadPokemonEvolutionChain">loadPokemonEvolutionChain</a></li><li><a href="global.html#loadPokemonMain">loadPokemonMain</a></li><li><a href="global.html#loadPokemonMainDataFromJson">loadPokemonMainDataFromJson</a></li><li><a href="global.html#loadPokemonSpecies">loadPokemonSpecies</a></li><li><a href="global.html#loadPokemonSpeciesDataFromJson">loadPokemonSpeciesDataFromJson</a></li><li><a href="global.html#loadPokemonTyps">loadPokemonTyps</a></li><li><a href="global.html#loadProgressbar">loadProgressbar</a></li><li><a href="global.html#loadStats">loadStats</a></li><li><a href="global.html#loadStatsAbout">loadStatsAbout</a></li><li><a href="global.html#loadStatsbasestats">loadStatsbasestats</a></li><li><a href="global.html#loadingScreenRemove">loadingScreenRemove</a></li><li><a href="global.html#notFoundTranslate">notFoundTranslate</a></li><li><a href="global.html#pokemonId">pokemonId</a></li><li><a href="global.html#pushToLocalCard">pushToLocalCard</a></li><li><a href="global.html#queryEvolutionChain">queryEvolutionChain</a></li><li><a href="global.html#removeClasslistCard">removeClasslistCard</a></li><li><a href="global.html#saveLikeList">saveLikeList</a></li><li><a href="global.html#scrollToTop">scrollToTop</a></li><li><a href="global.html#searchPokemon">searchPokemon</a></li><li><a href="global.html#searchPokemonDesignation">searchPokemonDesignation</a></li><li><a href="global.html#serachNotFound">serachNotFound</a></li><li><a href="global.html#shortText">shortText</a></li><li><a href="global.html#showCard">showCard</a></li><li><a href="global.html#sortLanguageDesignation">sortLanguageDesignation</a></li><li><a href="global.html#sortLanguageTyps">sortLanguageTyps</a></li><li><a href="global.html#translateLayout">translateLayout</a></li><li><a href="global.html#translator1Instance">translator1Instance</a></li><li><a href="global.html#translator2Instance">translator2Instance</a></li><li><a href="global.html#translator3Instance">translator3Instance</a></li><li><a href="global.html#translator4Instance">translator4Instance</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Oct 01 2023 22:17:40 GMT+0200 (Mitteleuropäische Sommerzeit)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Oct 03 2023 09:31:05 GMT+0200 (Mitteleuropäische Sommerzeit)
 </footer>
 
 <script> prettyPrint(); </script>

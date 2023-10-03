@@ -58,28 +58,30 @@ function changeLanguages(l) {
   for (let h = 0; h < language_other_data.length; h++) {
     const element = language_other_data[h];
     if (element.language == l) {
+      document.getElementById('search_input').placeholder = `${element.search}`;
+      document.getElementById('search_input_bottom').placeholder = `${element.search}`;
       document.getElementById('load-card-more').innerHTML = `${element['10_cards']}`;
       document.getElementById('country').innerHTML = `
             <img  class="menu-flag justify-content-between align-items-center" src="./img/icon/${element.language}.png" alt="">${element.speak}`;
       document.getElementById('brand').innerHTML = `${element.brand}`;
       document.getElementById('flagg-list').innerHTML = `
             <li onclick="loadOtherLanguages('de')"><a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.de}<img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.de}<img
                   src="./img/icon/de.png" alt=""></a></li>
             <li onclick="loadOtherLanguages('en')"><a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.en}<img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.en}<img
                   src="./img/icon/en.png" alt=""></a></li>
             <li onclick="loadOtherLanguages('fr')"><a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.fr}<img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.fr}<img
                   src="./img/icon/fr.png" alt=""></a></li>
             <li onclick="loadOtherLanguages('es')"><a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.es}<img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.es}<img
                   src="./img/icon/es.png" alt=""></a></li>
             <li onclick="loadOtherLanguages('it')"><a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.it}<img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.it}<img
                   src="./img/icon/it.png" alt=""></a></li>
             <li onclick="loadOtherLanguages('ja')"><a
-                class="dropdown-item d-flex justify-content-between align-items-center" href="#" >${element.ja}<img
+                class="dropdown-item d-flex justify-content-between align-items-center">${element.ja}<img
                   src="./img/icon/ja.png" alt=""></a></li>
                   `;
       document.getElementById('search-not-found').innerHTML = `

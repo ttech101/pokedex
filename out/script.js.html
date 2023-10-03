@@ -1,4 +1,32 @@
-// CODE to be measured
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: script.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: script.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// CODE to be measured
 //var start = performance.now();
 
 
@@ -15,7 +43,7 @@ function init() {
  * This function starts loading the maps as specified
  */
 async function loadBlock() {
-    if (card_number <= loading_counter) {
+    if (card_number &lt;= loading_counter) {
         card_number++;
         await loadDataPrimar(card_number);
         pushToLocalCard();
@@ -92,7 +120,7 @@ async function loadPokemonSpecies(url) {
     let show_pokemon_species = await fetch(url);
     let show_pokemon_speciesAsJson = await show_pokemon_species.json();
     loadPokemonSpeciesDataFromJson(show_pokemon_speciesAsJson);
-    for (let i = 0; i < show_pokemon_speciesAsJson.names.length; i++) {
+    for (let i = 0; i &lt; show_pokemon_speciesAsJson.names.length; i++) {
         const element = show_pokemon_speciesAsJson.names[i];
         sortLanguageDesignation(element);
     }
@@ -106,13 +134,13 @@ async function loadPokemonSpecies(url) {
  */
 async function loadPokemonTyps(url) {
     typs = [];
-    for (let i = 0; i < url.length; i++) {
+    for (let i = 0; i &lt; url.length; i++) {
         const element = url[i];
         let typ_url = element.type.url;
         let show_pokemon_typ = await fetch(typ_url);
         let show_pokemon_typAsJson = await show_pokemon_typ.json();
         typs.push([]);
-        for (let j = 0; j < show_pokemon_typAsJson.names.length; j++) {
+        for (let j = 0; j &lt; show_pokemon_typAsJson.names.length; j++) {
             const element = show_pokemon_typAsJson.names[j];
             sortLanguageTyps(element, i);
         }
@@ -128,7 +156,7 @@ async function loadPokemonTyps(url) {
 async function loadPokemonEgg_groups(id) {
     let egg_groups_temp = pokemon_main[id].egg_groups;
     pokemon_main[id].egg_groups = [];
-    for (let k = 0; k < egg_groups_temp.length; k++) {
+    for (let k = 0; k &lt; egg_groups_temp.length; k++) {
         const element = egg_groups_temp[k];
         let show_pokemon_egg_group_url = await fetch(element.url);
         let show_pokemon_egg_group_AsJson = await show_pokemon_egg_group_url.json();
@@ -145,7 +173,7 @@ async function loadPokemonEgg_groups(id) {
 async function loadPokemonAbilities(id) {
     let abilities_temp = pokemon_main[id].abilities;
     pokemon_main[id]['abilities'] = [];
-    for (let l = 0; l < abilities_temp.length; l++) {
+    for (let l = 0; l &lt; abilities_temp.length; l++) {
         const element = abilities_temp[l];
         let show_pokemon_abilities_url = await fetch(element.ability.url);
         let show_pokemon_abilities_AsJson = await show_pokemon_abilities_url.json();
@@ -250,13 +278,13 @@ function loadPokemonSpeciesDataFromJson(show_pokemon_speciesAsJson) {
  * @returns             Returns the number as an ID with # in front of it
  */
 function pokemonId(id) {
-    if (id < 10) {
+    if (id &lt; 10) {
         return '#' + '00' + id;;
     }
-    if (id < 100) {
+    if (id &lt; 100) {
         return '#' + '0' + id;;
     }
-    if (id < 1000) {
+    if (id &lt; 1000) {
         return '#' + id;;
     }
 }
@@ -337,7 +365,7 @@ function sortLanguageTyps(b, i) {
  */
 function loadProgressbar() {
     if (card_number >= 10) {
-        if (card_number <= 11) {
+        if (card_number &lt;= 11) {
             loadingScreenRemove();
         }
     } else {
@@ -374,7 +402,7 @@ function searchPokemon(a) {
     }
     search = search.toLowerCase();
     let found = 0;
-    for (let i = 0; i < pokemon_main.length; i++) {
+    for (let i = 0; i &lt; pokemon_main.length; i++) {
         const element = pokemon_main[i];
         found = searchPokemonDesignation(i, search, found);
         serachNotFound(found);
@@ -390,7 +418,7 @@ function searchPokemon(a) {
  * @returns                 Return which ones were found
  */
 function searchPokemonDesignation(i, search, found) {
-    for (let j = 0; j < pokemon_main[i].designation.length; j++) {
+    for (let j = 0; j &lt; pokemon_main[i].designation.length; j++) {
         const element = pokemon_main[i].designation[j];
         let card_number = i;
         if (element.text.toLowerCase().includes(search)) {
@@ -545,10 +573,10 @@ function loadCard(i, layout) {
 function cardTypsSmall(id) {
     document.getElementById('card-name').innerHTML = translator1Instance(id, ['designation'], language);
     document.getElementById('card-typs-small').innerHTML = "";
-    for (let i = 0; i < pokemon_main[id].typs.length; i++) {
+    for (let i = 0; i &lt; pokemon_main[id].typs.length; i++) {
         let typ = translator2Instance(id, ['typs'], language, i);
         document.getElementById('card-typs-small').innerHTML += `
-        <span class=" mb-2 badge rounded-pill span shadow ${pokemon_main[id]['bg_color']}-typs">${typ}</span>`;
+        &lt;span class=" mb-2 badge rounded-pill span shadow ${pokemon_main[id]['bg_color']}-typs">${typ}&lt;/span>`;
     }
 }
 
@@ -578,7 +606,7 @@ function loadCardElements(i) {
  * @returns                         returns the translated text
  */
 function translator1Instance(id, paragraph, translate_in) {
-    for (let i = 0; i < pokemon_main[id][paragraph].length; i++) {
+    for (let i = 0; i &lt; pokemon_main[id][paragraph].length; i++) {
         const element = pokemon_main[id][paragraph][i];
         if (element.language == translate_in) {
             return element.text;
@@ -596,7 +624,7 @@ function translator1Instance(id, paragraph, translate_in) {
  * @returns                         returns the translated text
  */
 function translator2Instance(id, paragraph, translate_in, tabel) {
-    for (let i = 0; i < pokemon_main[id][paragraph][tabel].length; i++) {
+    for (let i = 0; i &lt; pokemon_main[id][paragraph][tabel].length; i++) {
         const element = pokemon_main[id][paragraph][tabel][i];
         if (element.language == translate_in) {
             return element.text;
@@ -613,7 +641,7 @@ function translator2Instance(id, paragraph, translate_in, tabel) {
  * @returns                         returns the translated text
  */
 function translator3Instance(id, paragraph, translate_in) {
-    for (let i = 0; i < pokemon_main[id][paragraph].length; i++) {
+    for (let i = 0; i &lt; pokemon_main[id][paragraph].length; i++) {
         const element = pokemon_main[id][paragraph][i];
         if (element.language.name == translate_in) {
             return element.genus;
@@ -631,7 +659,7 @@ function translator3Instance(id, paragraph, translate_in) {
  * @returns                         returns the translated text
  */
 function translator4Instance(id, paragraph, translate_in, tabel) {
-    for (let i = 0; i < pokemon_main[id][paragraph][tabel].length; i++) {
+    for (let i = 0; i &lt; pokemon_main[id][paragraph][tabel].length; i++) {
         const element = pokemon_main[id][paragraph][tabel][i];
         if (element.language.name == translate_in) {
             return element.name;
@@ -661,7 +689,7 @@ function loadStats(i) {
  * This function translates the layout into the respective language
  */
 function translateLayout() {
-    for (let i = 0; i < language_other_data.length; i++) {
+    for (let i = 0; i &lt; language_other_data.length; i++) {
         const element = language_other_data[i];
         if (element.language == language) {
             changeAbout(element);
@@ -757,7 +785,7 @@ function loadStatsAbout(i) {
  */
 function createEggGroup(id) {
     document.getElementById('card-egg_groups').innerHTML = "";
-    for (let j = 0; j < pokemon_main[id]['egg_groups'].length; j++) {
+    for (let j = 0; j &lt; pokemon_main[id]['egg_groups'].length; j++) {
         const element = pokemon_main[id]['egg_groups'][j];
         let group = translator4Instance(id, ['egg_groups'], language, j);
         if (group !== undefined) {
@@ -776,7 +804,7 @@ function createEggGroup(id) {
 */
 function createAbilities(id) {
     document.getElementById('card-abilities').innerHTML = "";
-    for (let j = 0; j < pokemon_main[id]['abilities'].length; j++) {
+    for (let j = 0; j &lt; pokemon_main[id]['abilities'].length; j++) {
         const element = pokemon_main[id]['abilities'][j];
         let group = translator4Instance(id, ['abilities'], language, j);
         if (group !== undefined) {
@@ -794,11 +822,11 @@ function createAbilities(id) {
 */
 function createHabitat(id) {
     document.getElementById('card-egg_cycle').innerHTML = "";
-    for (let j = 0; j < pokemon_main[id]['habitat'].length; j++) {
+    for (let j = 0; j &lt; pokemon_main[id]['habitat'].length; j++) {
         const element = pokemon_main[id]['habitat'][j];
         let group = translator4Instance(id, ['habitat'], language, 0);
         if (group !== undefined) {
-            document.getElementById('card-egg_cycle').innerHTML = `<b>${group} </b>`;
+            document.getElementById('card-egg_cycle').innerHTML = `&lt;b>${group} &lt;/b>`;
         } else {
             document.getElementById('card-egg_cycle').innerHTML = notFoundTranslate();
         }
@@ -823,11 +851,11 @@ function loadStatsbasestats(i) {
 function createStats(i) {
     document.getElementById('create-base-stats').innerHTML = "";
     let total = 0;
-    for (let j = 0; j < pokemon_main[i]['stats'].length; j++) {
+    for (let j = 0; j &lt; pokemon_main[i]['stats'].length; j++) {
         const element = pokemon_main[i]['stats'][j];
-        if (element.base_stat <= 45) {
+        if (element.base_stat &lt;= 45) {
             var progress_color = 'bg-danger';
-        } else if (element.base_stat <= 65) {
+        } else if (element.base_stat &lt;= 65) {
             var progress_color = 'bg-warning';
         } else {
             var progress_color = 'bg-success';
@@ -846,9 +874,9 @@ function createStats(i) {
  */
 function createProgressBarEnd(total) {
     total_percent = (total / 6).toFixed(0);
-    if (total <= 30) {
+    if (total &lt;= 30) {
         var progress_color_total = 'bg-danger';
-    } else if (total <= 60) {
+    } else if (total &lt;= 60) {
         var progress_color_total = 'bg-warning';
     } else {
         var progress_color_total = 'bg-success';
@@ -862,7 +890,7 @@ function createProgressBarEnd(total) {
  * @param {Number} i card number
  */
 function createFacts(i) {
-    for (let j = 0; j < pokemon_main[i]['flavor_text_entries'].length; j++) {
+    for (let j = 0; j &lt; pokemon_main[i]['flavor_text_entries'].length; j++) {
         const element = pokemon_main[i]['flavor_text_entries'][j];
         if (element.language.name == language) {
             document.getElementById('translate-facts').innerHTML = element.flavor_text;
@@ -876,7 +904,7 @@ function createFacts(i) {
  * 
  */
 function changeBaseStatsLoad() {
-    for (let i = 0; i < language_other_data.length; i++) {
+    for (let i = 0; i &lt; language_other_data.length; i++) {
         const element = language_other_data[i];
         if (element.language == language) {
             changeBaseStats(element);
@@ -892,14 +920,14 @@ function changeBaseStatsLoad() {
 function loadEvolutionStats(i) {
     number = card_number - 1;
     if (pokemon_main[i].evolution_chain.length == 3) {
-        if (pokemon_main[i].evolution_chain[0].index <= number && pokemon_main[i].evolution_chain[1].index <= number && pokemon_main[i].evolution_chain[2].index <= number) {
+        if (pokemon_main[i].evolution_chain[0].index &lt;= number &amp;&amp; pokemon_main[i].evolution_chain[1].index &lt;= number &amp;&amp; pokemon_main[i].evolution_chain[2].index &lt;= number) {
             createEvolutionTemplate3(i);
         } else {
             createEvolutionTemplate3NotFound(i);
         }
     }
     if (pokemon_main[i].evolution_chain.length == 2) {
-        if (pokemon_main[i].evolution_chain[0].index <= number && pokemon_main[i].evolution_chain[1].index <= number) {
+        if (pokemon_main[i].evolution_chain[0].index &lt;= number &amp;&amp; pokemon_main[i].evolution_chain[1].index &lt;= number) {
             createEvolutionTemplate2(i);
         } else {
             createEvolutionTemplate2NotFound(i);
@@ -933,7 +961,7 @@ function loadBottomSmallCard(i) {
  */
 function loadBottomSmallCardLeft() {
     document.getElementById('left-card').innerHTML = `
-    <div style="height: 30px; width: 30px;"></div>`;
+    &lt;div style="height: 30px; width: 30px;">&lt;/div>`;
     document.getElementById('right-card').innerHTML = createSmallBottomRight();
     document.getElementById("right-card").onclick = function () { loadCard(1, opinion) };
     i = 0;
@@ -944,7 +972,7 @@ function loadBottomSmallCardLeft() {
  */
 function loadBottomSmallCardRight() {
     document.getElementById('right-card').innerHTML = `
-<div style="height: 30px; width: 30px;"></div>`;
+&lt;div style="height: 30px; width: 30px;">&lt;/div>`;
     document.getElementById('left-card').innerHTML = createSmallBottomLeft();
     document.getElementById("left-card").onclick = function () { loadCard(loading_counter - 1, opinion) };
 }
@@ -954,7 +982,7 @@ function loadBottomSmallCardRight() {
 This function is used if no translation was found
  */
 function notFoundTranslate() {
-    for (let i = 0; i < language_other_data.length; i++) {
+    for (let i = 0; i &lt; language_other_data.length; i++) {
         const element = language_other_data[i];
         if (element.language == language) {
             return element.not_found;
@@ -1016,7 +1044,7 @@ function heartRed(cn) {
     document.getElementById('card-screen-bg').classList.add(pokemon_main[cn]['bg_color'] + '-animation');
     document.getElementById(`card-number-${cn}`).classList.remove(pokemon_main[cn]['bg_color']);
     document.getElementById(`card-number-${cn}`).classList.add(pokemon_main[cn]['bg_color'] + '-animation');
-    document.getElementById('heat').innerHTML = `<path  stroke="red" fill="red"
+    document.getElementById('heat').innerHTML = `&lt;path  stroke="red" fill="red"
     d="M12 21.35l-1.45-1.32C5.4 16.18 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 7.68-8.55 11.54L12 21.35z" />`;
 }
 
@@ -1030,7 +1058,7 @@ function heartBlack(cn) {
     document.getElementById('card-screen-bg').classList.add(pokemon_main[cn]['bg_color']);
     document.getElementById(`card-number-${cn}`).classList.remove(pokemon_main[cn]['bg_color'] + '-animation');
     document.getElementById(`card-number-${cn}`).classList.add(pokemon_main[cn]['bg_color']);
-    document.getElementById('heat').innerHTML = `<path  stroke="black" fill="transparent"
+    document.getElementById('heat').innerHTML = `&lt;path  stroke="black" fill="transparent"
     d="M12 21.35l-1.45-1.32C5.4 16.18 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 7.68-8.55 11.54L12 21.35z" />`;
 }
 
@@ -1066,3 +1094,26 @@ function loadCardMore(i) {
     loadBlock();
 }
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#BlockEnd">BlockEnd</a></li><li><a href="global.html#cardTypsSmall">cardTypsSmall</a></li><li><a href="global.html#changeAbout">changeAbout</a></li><li><a href="global.html#changeBaseStats">changeBaseStats</a></li><li><a href="global.html#changeBaseStatsLoad">changeBaseStatsLoad</a></li><li><a href="global.html#changeEvolution">changeEvolution</a></li><li><a href="global.html#changeLanguages">changeLanguages</a></li><li><a href="global.html#changeOption">changeOption</a></li><li><a href="global.html#createAbilities">createAbilities</a></li><li><a href="global.html#createEggGroup">createEggGroup</a></li><li><a href="global.html#createEvolutionTemplate2">createEvolutionTemplate2</a></li><li><a href="global.html#createEvolutionTemplate2NotFound">createEvolutionTemplate2NotFound</a></li><li><a href="global.html#createEvolutionTemplate3">createEvolutionTemplate3</a></li><li><a href="global.html#createEvolutionTemplate3NotFound">createEvolutionTemplate3NotFound</a></li><li><a href="global.html#createFacts">createFacts</a></li><li><a href="global.html#createHabitat">createHabitat</a></li><li><a href="global.html#createProgressBarEnd">createProgressBarEnd</a></li><li><a href="global.html#createSmallBottomLeft">createSmallBottomLeft</a></li><li><a href="global.html#createSmallBottomRight">createSmallBottomRight</a></li><li><a href="global.html#createSmallCard">createSmallCard</a></li><li><a href="global.html#createStats">createStats</a></li><li><a href="global.html#createStatsTabelEnd">createStatsTabelEnd</a></li><li><a href="global.html#createStatsTabelSingel">createStatsTabelSingel</a></li><li><a href="global.html#disableSearchBottom">disableSearchBottom</a></li><li><a href="global.html#enableSearchBottom">enableSearchBottom</a></li><li><a href="global.html#heartBlack">heartBlack</a></li><li><a href="global.html#heartRed">heartRed</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#leadPokemonHabitat">leadPokemonHabitat</a></li><li><a href="global.html#likePokemon">likePokemon</a></li><li><a href="global.html#loadBlock">loadBlock</a></li><li><a href="global.html#loadBottomSmallCard">loadBottomSmallCard</a></li><li><a href="global.html#loadBottomSmallCardLeft">loadBottomSmallCardLeft</a></li><li><a href="global.html#loadBottomSmallCardRight">loadBottomSmallCardRight</a></li><li><a href="global.html#loadCard">loadCard</a></li><li><a href="global.html#loadCardElements">loadCardElements</a></li><li><a href="global.html#loadCardMore">loadCardMore</a></li><li><a href="global.html#loadCardOption">loadCardOption</a></li><li><a href="global.html#loadCardOptionAbout">loadCardOptionAbout</a></li><li><a href="global.html#loadCardOptionBaseStats">loadCardOptionBaseStats</a></li><li><a href="global.html#loadCardOptionEvolution">loadCardOptionEvolution</a></li><li><a href="global.html#loadDataPrimar">loadDataPrimar</a></li><li><a href="global.html#loadDataSecondary">loadDataSecondary</a></li><li><a href="global.html#loadEvolutionStats">loadEvolutionStats</a></li><li><a href="global.html#loadLikeList">loadLikeList</a></li><li><a href="global.html#loadLikePokemon">loadLikePokemon</a></li><li><a href="global.html#loadOtherLanguages">loadOtherLanguages</a></li><li><a href="global.html#loadPokemonAbilities">loadPokemonAbilities</a></li><li><a href="global.html#loadPokemonEgg_groups">loadPokemonEgg_groups</a></li><li><a href="global.html#loadPokemonEvolutionChain">loadPokemonEvolutionChain</a></li><li><a href="global.html#loadPokemonMain">loadPokemonMain</a></li><li><a href="global.html#loadPokemonMainDataFromJson">loadPokemonMainDataFromJson</a></li><li><a href="global.html#loadPokemonSpecies">loadPokemonSpecies</a></li><li><a href="global.html#loadPokemonSpeciesDataFromJson">loadPokemonSpeciesDataFromJson</a></li><li><a href="global.html#loadPokemonTyps">loadPokemonTyps</a></li><li><a href="global.html#loadProgressbar">loadProgressbar</a></li><li><a href="global.html#loadStats">loadStats</a></li><li><a href="global.html#loadStatsAbout">loadStatsAbout</a></li><li><a href="global.html#loadStatsbasestats">loadStatsbasestats</a></li><li><a href="global.html#loadingScreenRemove">loadingScreenRemove</a></li><li><a href="global.html#notFoundTranslate">notFoundTranslate</a></li><li><a href="global.html#pokemonId">pokemonId</a></li><li><a href="global.html#pushToLocalCard">pushToLocalCard</a></li><li><a href="global.html#queryEvolutionChain">queryEvolutionChain</a></li><li><a href="global.html#removeClasslistCard">removeClasslistCard</a></li><li><a href="global.html#saveLikeList">saveLikeList</a></li><li><a href="global.html#scrollToTop">scrollToTop</a></li><li><a href="global.html#searchPokemon">searchPokemon</a></li><li><a href="global.html#searchPokemonDesignation">searchPokemonDesignation</a></li><li><a href="global.html#serachNotFound">serachNotFound</a></li><li><a href="global.html#shortText">shortText</a></li><li><a href="global.html#showCard">showCard</a></li><li><a href="global.html#sortLanguageDesignation">sortLanguageDesignation</a></li><li><a href="global.html#sortLanguageTyps">sortLanguageTyps</a></li><li><a href="global.html#translateLayout">translateLayout</a></li><li><a href="global.html#translator1Instance">translator1Instance</a></li><li><a href="global.html#translator2Instance">translator2Instance</a></li><li><a href="global.html#translator3Instance">translator3Instance</a></li><li><a href="global.html#translator4Instance">translator4Instance</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Oct 03 2023 09:31:05 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
