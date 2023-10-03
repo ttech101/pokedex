@@ -18,7 +18,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@100;200;300;400;500;600;800;900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pacifico&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@100;200;300;400;500;600;800;900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pacifico&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
 
 
 </head>
@@ -28,6 +30,20 @@
     <nav class="navbar bg-body-tertiary rounded-4 shadow rounded-top-0">
       <div class="container-fluid justify-content-center">
         <a id="brand" class="navbar-brand m-0 p-0" style="font-size: x-large;font-weight: 500;"><b>Pokedex</b></a>
+        <button class="btn btn-light m-0 p-0" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><img style="height: 25px;"
+            src="./img/info_FILL1_wght500_GRAD0_opsz40.svg" alt=""></button>
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+          <div class="offcanvas-header">
+            <h5 id="impressum-header" class="offcanvas-title" id="offcanvasScrollingLabel">wewewe</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <p id="impressum-text">Informationen zur Dokumentation finden Sie unter folgendem <a href="./out/index.html"
+                target=" _blank">Link</a>.</p>
+          </div>
+        </div>
         <form class=" d-flex " role="search">
           <input id="search_input" onkeyup="searchPokemon('header')" class=" form-control ms-2 search-top" type="text"
             placeholder="Suche dein Pokemon" aria-label="Search">
@@ -58,7 +74,6 @@
                   src="./img/icon/ja.png" alt=""></a></li>
           </ul>
         </div>
-      </div>
     </nav>
   </div>
   <div id="loader" class="loader">
@@ -80,7 +95,8 @@
     <div id="content-small" class=" d-flex justify-content-center align-items-center flex-wrap ">
     </div>
     <div class="load-more d-flex justify-content-center pb-2">
-     <button id="load-card-more" onclick="loadCardMore('10')" type="button"  class="btn btn-light">110 weitere Karten Laden</button>
+      <button id="load-card-more" onclick="loadCardMore('10')" type="button" class="btn btn-light">110 weitere Karten
+        Laden</button>
     </div>
     <div id="search-not-found" style="display: none;">
       <div class="mt-5 d-flex justify-content-center align-items-center flex-wrap">test 123
@@ -156,9 +172,9 @@
                     <p id="translate-abilities" class="mb-2 about-data-left">Abilities</p>
                   </div>
                   <div class="about-right">
-                    <p id="card-species" class="mb-2"><b >Seed</b></p>
-                    <p id="card-height" class="mb-2"><b >2 3,6 (7cm)</b></p>
-                    <p id="card-weight" class="mb-2"><b >8 tonnen</b></p>
+                    <p id="card-species" class="mb-2"><b>Seed</b></p>
+                    <p id="card-height" class="mb-2"><b>2 3,6 (7cm)</b></p>
+                    <p id="card-weight" class="mb-2"><b>8 tonnen</b></p>
                     <p id="card-abilities" class="mb-2">what???</p>
                   </div>
                 </div>
@@ -336,12 +352,12 @@
                     <p class="text-center"><b>Bisasam</b></p>
                   </div>
                 </div>
-                <p  id="header-bas-stats_not_found" class="text-center" >The following cards still need to be loaded</p>
+                <p id="header-bas-stats_not_found" class="text-center">The following cards still need to be loaded</p>
               </div>
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
   <div id="nav-footer" class="navbar-footer serch-footer">
@@ -357,4 +373,5 @@
     <span>&#8593;</span>
   </button>
 </body>
+
 </html>

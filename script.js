@@ -9,6 +9,7 @@
 function init() {
     loadBlock();
     scrollToTop();
+    generateImpressum();
 }
 
 /**
@@ -1066,3 +1067,11 @@ function loadCardMore(i) {
     loadBlock();
 }
 
+/**
+ * This function generates the imprint and the documentation
+ */
+function generateImpressum(){
+    document.getElementById('impressum-header').innerHTML = 'Dokumentation / Impressum'
+
+    document.getElementById('impressum-text').innerHTML += templateImpressum();
+}

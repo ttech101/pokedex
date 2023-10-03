@@ -538,3 +538,6 @@ body {
     border: 3px solid #ffffff;
   }
 
+.menu:hover{
+    cursor: pointer;
+}
