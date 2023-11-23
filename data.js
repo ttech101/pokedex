@@ -1,12 +1,12 @@
 const main_url = 'https://pokeapi.co/api/v2/pokemon/';
 let card_number = 0;
-let loading_counter = 10 - 1;
+let loading_counter = 20 - 1;
 let language = 'de';
 let id = "";
 let pokemon_main = [];
 let typs = [];
 let like_list = [];
-var opinion ="about";
+var opinion = "about";
 
 let language_other_data = [
     {
@@ -43,12 +43,12 @@ let language_other_data = [
         "fact": "Fakten",
         "evolution_chain": "Evolutionskette",
         "level": "Lvl",
-        "not_found" : "nicht gefunden",
+        "not_found": "nicht gefunden",
         "search": "Suche dein Pokémon",
         "lvl": "Stufe",
         "10_cards": "10 weitere Karten Laden",
         "evo_not_found": "Es müssen noch folgende Karten geladen werden ",
-        "evo_chain" :"Evolutionskette"
+        "evo_chain": "Evolutionskette"
     },
     {
         "language": "en",
@@ -82,12 +82,12 @@ let language_other_data = [
         "speed": "Speed",
         "total": "Total",
         "fact": "Factual information",
-        "not_found" : "Not found",
+        "not_found": "Not found",
         "search": "Search your Pokémon",
         "lvl": "Level",
         "10_cards": "Load 10 more cards",
         "evo_not_found": "The following cards still need to be loaded ",
-        "evo_chain" :"Evolution chain"
+        "evo_chain": "Evolution chain"
     },
     {
         "language": "fr",
@@ -121,12 +121,12 @@ let language_other_data = [
         "speed": "Vitesse",
         "total": "Total",
         "fact": "Faits",
-        "not_found" : "pas trouvé",
+        "not_found": "pas trouvé",
         "search": "Cherche ton Pokémon",
         "lvl": "niveau",
         "10_cards": "Chargez 10 cartes supplémentaires",
         "evo_not_found": "Les cartes suivantes doivent encore être chargées",
-        "evo_chain" :"Chaîne d'évolution"
+        "evo_chain": "Chaîne d'évolution"
     },
     {
         "language": "it",
@@ -160,12 +160,12 @@ let language_other_data = [
         "speed": "Velocità",
         "total": "Totale",
         "fact": "I fatti",
-        "not_found" : "non trovato",
+        "not_found": "non trovato",
         "search": "Cerca il tuo Pokémon",
         "lvl": "livello",
         "10_cards": "Carica altre 10 carte",
         "evo_not_found": "Le seguenti mappe devono ancora essere caricate",
-        "evo_chain" :"Catena di evoluzione"
+        "evo_chain": "Catena di evoluzione"
     },
     {
         "language": "es",
@@ -199,12 +199,12 @@ let language_other_data = [
         "speed": "Velocidad",
         "total": "Total",
         "fact": "Hechos",
-        "not_found" : "extraviado",
+        "not_found": "extraviado",
         "search": "Busca tu Pokémon",
         "lvl": "nivel",
         "10_cards": "Cargue 10 tarjetas más",
         "evo_not_found": "Aún es necesario cargar los siguientes mapas.",
-        "evo_chain" :"Cadena de evolución"
+        "evo_chain": "Cadena de evolución"
     },
     {
         "language": "ja",
@@ -238,12 +238,12 @@ let language_other_data = [
         "speed": "速さ",
         "total": "合計",
         "fact": "事実",
-        "not_found" : "見つかりません",
+        "not_found": "見つかりません",
         "search": "あなたのポケモンを探してください",
         "lvl": "レベル",
         "10_cards": "さらに10枚のカードをロードする",
         "evo_not_found": "次のマップはまだロードする必要があります",
-        "evo_chain" :"進化の連鎖"
+        "evo_chain": "進化の連鎖"
     }
 ];
 
